@@ -1,19 +1,22 @@
 .categories-container {
     position: relative;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: auto;
-    margin-top: 20px;
+    z-index: 999;
+    top: 62px;
+}
+
+.active {
+    display: flex;
 }
 
 .categories {
     display: flex;
     position: absolute;
-    top: 0px;
     flex-direction: column;
-    max-width: 1250px;
     width: 100%;
     height: auto;
 }
@@ -23,15 +26,14 @@
     display: flex;
     flex-direction: column;
     background-color: var(--dark-background-light);
-    width: 90px;
-    height: auto;
-    border-radius: 4px;
+    width: 150px;
+    height: 100vh;
 }
 
 .categories-list a {
     cursor: pointer;
     font-size: 0.8em;
-    margin: 4px;
+    margin: 5px;
     font-weight: 500;
     padding: 2px 2px 4px 2px;
     color: var(--light-background-dark);
@@ -47,8 +49,8 @@
     color: whitesmoke;
 }
 
-@media (max-width : 500px) {
-    .categories-list {
-        position:absolute;
+@media (max-width : 600px) {
+    .categories-container {
+        top: 45px;
     }
 }
