@@ -58,15 +58,19 @@ body {
 #nav-bar-container {
   display: flex;
   flex-direction: column;
+  position: fixed;
   width: 100%;
   height: auto;
   align-items: center;
   justify-content: center;
   background-color: var(--dark-background-light);
   box-shadow: #001e3c 0px 1px 0px, #001e3c 0px 0px 8px;
+  z-index: 999;
+  border-bottom: 0.5px solid whitesmoke;
 }
 
 .nav-bar {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -98,42 +102,35 @@ body {
   font-size: 1.3em;
   transition: 0.4s all;
 }
+
 .right-nav-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 140px;
+  justify-content: space-evenly;
   height: 100%;
-  margin-right: 10px;
+  color: var(--light-background-light);
+  transform: scale(1.2);
+  margin: auto 20px;
+  cursor: pointer;
 }
 
-.right-nav-bar a {
-    color: var(--light-background-light);
-    font-weight: 500;
-    font-size: 1.2em;
-    margin: auto 10px;
-}
-
-.left-nav-bar a:hover , .right-nav-bar a:hover {
+.left-nav-bar a:hover {
     color: var(--light-background-light);
 }
 
 @media (max-width:600px) {
-  .right-nav-bar {
-    width: 120px;
-  }
-
   .left-nav-bar a {
     font-size: 1.1em;
-  }
-
-  .right-nav-bar a {
-    font-size: 0.9em;
   }
 
   .left-nav-bar img {
     width: 24px;
     height: 24px;
   }
+
+  .right-nav-bar {
+    transform: scale(1);
+  }
+
 }
