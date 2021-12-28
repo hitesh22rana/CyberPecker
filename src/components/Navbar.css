@@ -74,7 +74,6 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 1250px;
   height: 100%;
   align-items: center;
   justify-content: space-between;
