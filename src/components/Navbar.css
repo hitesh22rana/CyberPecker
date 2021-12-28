@@ -1,0 +1,139 @@
+/* Fonts used  */
+
+/* Poppins(font) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Roboto(font) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+/* Global changes starts here*/
+
+/* Color Variables */
+:root {
+  --light-background-light : #f5f5f5;
+  --light-background-dark : #f3f6f9;
+
+  --dark-background-light : #001e3c;
+  --dark-background-dark : #071a2f;
+}
+
+
+/* Adds a smooth scrolling effect to the document */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a,
+li,
+ul,
+span {
+    text-decoration: none;
+}
+
+li,
+ul {
+    list-style: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    background-color: var(--light-background-light);
+}
+
+#nav-bar-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-background-light);
+  box-shadow: #001e3c 0px 1px 0px, #001e3c 0px 0px 8px;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1250px;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.left-nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.left-nav-bar img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.left-nav-bar a {
+  margin: auto 8px;
+  color: var(--light-background-light);
+  font-weight: 500;
+  font-size: 1.3em;
+  transition: 0.4s all;
+}
+.right-nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 140px;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.right-nav-bar a {
+    color: var(--light-background-light);
+    font-weight: 500;
+    font-size: 1.2em;
+    margin: auto 10px;
+}
+
+.left-nav-bar a:hover , .right-nav-bar a:hover {
+    color: var(--light-background-light);
+}
+
+@media (max-width:600px) {
+  .right-nav-bar {
+    width: 120px;
+  }
+
+  .left-nav-bar a {
+    font-size: 1.1em;
+  }
+
+  .right-nav-bar a {
+    font-size: 0.9em;
+  }
+
+  .left-nav-bar img {
+    width: 24px;
+    height: 24px;
+  }
+}
