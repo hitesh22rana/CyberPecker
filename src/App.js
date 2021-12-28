@@ -1,6 +1,7 @@
 import Categories from './components/Categories';
 import Navbar from './components/Navbar';
 import News from './components/News';
+import { useState } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -10,11 +11,14 @@ import {
 
 
 function App() {
+
+  const [sidebar, setSidebar] = useState(false);
+
   return (
     <div className="App">
         <Router>
-          <Navbar/>
-          <Categories/>
+          <Navbar setSidebar={setSidebar} sidebar={sidebar}/>
+          <Categories sidebar={sidebar}/>
           <Routes>
             <Route eaxct path="/" element = {<News key="basic" category="basic"/>}></Route>
             <Route exact path="/dataBreach" element = {<News key="dataBreach" category="dataBreach"/>}></Route>
