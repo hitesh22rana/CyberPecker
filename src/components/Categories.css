@@ -54,3 +54,22 @@
         top: 45px;
     }
 }
+
+@media (min-width : 1600px) {
+    .categories-list {
+        width: 18%;
+        align-items: stretch;
+        letter-spacing: 3px;
+    }
+
+    .categories-list a {
+        cursor: pointer;
+        font-size: 1.5em;
+        margin: 10px;
+        font-weight: 500;
+        padding: 2px 2px 4px 2px;
+        color: var(--light-background-dark);
+        transition: .2s all ease-in-out;
+        border-bottom: 1.5px solid var(--light-background-dark);
+    }
+}
