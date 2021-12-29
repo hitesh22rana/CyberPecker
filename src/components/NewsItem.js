@@ -7,8 +7,11 @@ export class NewsItem extends Component {
         // Extracting information using props
         let {title , author , description , imgURL , newsURL} = this.props;
 
+        let colors = ['#e5989b','#d62828','#ef476f','#e76f51'];
+
         return (
             <div className="news-card">
+                <div className="style-color" style={{backgroundColor : colors[Math.floor(Math.random() * colors.length)]}}></div>
                 <div className="news-img-container">
                     <img id="logo" src={imgURL} alt="img" />
                 </div>
