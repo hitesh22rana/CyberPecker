@@ -4,6 +4,7 @@ import './News.css'
 import logo from '../logo.png'
 import Spinner from './Spinner'
 import PropTypes from 'prop-types'
+import '../colorToggle.css';
 
 export class News extends Component {
     static defaultProps = {
