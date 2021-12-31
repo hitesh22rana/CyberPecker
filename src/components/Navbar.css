@@ -9,16 +9,6 @@
 
 /* Global changes starts here*/
 
-/* Color Variables */
-:root {
-  --light-background-light : #f5f5f5;
-  --light-background-dark : #f3f6f9;
-
-  --dark-background-light : #001e3c;
-  --dark-background-dark : #071a2f;
-}
-
-
 /* Adds a smooth scrolling effect to the document */
 html {
     scroll-behavior: smooth;
@@ -52,7 +42,6 @@ ul {
 body {
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
-    background-color: var(--light-background-light);
 }
 
 #nav-bar-container {
@@ -63,10 +52,8 @@ body {
   height: auto;
   align-items: center;
   justify-content: center;
-  background-color: var(--dark-background-light);
-  box-shadow: #001e3c 0px 1px 0px, #001e3c 0px 0px 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   z-index: 999;
-  border-bottom: 0.5px solid whitesmoke;
 }
 
 .nav-bar {
@@ -97,7 +84,7 @@ body {
 .left-nav-bar a {
   margin: auto 8px;
   color: var(--light-background-light);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.3em;
   transition: 0.4s all;
 }
@@ -117,6 +104,67 @@ body {
 .left-nav-bar a:hover {
     color: var(--light-background-light);
 }
+
+/* toggle button */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  transform: scale(0.5);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--light-background-primary);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: rgba(25, 25, 25 , 0.8);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px rgba(25, 25, 25 , 0.8);
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 
 @media (max-width:600px) {
   .left-nav-bar a {
