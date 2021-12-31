@@ -1,12 +1,13 @@
 import './Categories.css'
 import { Link } from "react-router-dom";
 import React from 'react'
+import '../colorToggle.css';
 
-function Categories({sidebar}) {
+function Categories({sidebar , bgmode}) {
     return (
         <section className={sidebar === true ? 'categories-container active' : 'categories-container'}>
             <div className="categories">
-                <div className="categories-list">
+                <div className={bgmode === true ? 'light-mode-categories-list' : 'dark-mode-categories-list'}>
                     <Link to="/">Home</Link>
                     <Link to="/dataBreach">Data Breach</Link>
                     <Link to="/cyberAttack">Cyber Attack</Link>
