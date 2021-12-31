@@ -9,7 +9,7 @@
 .news-topic-heading {
     display: flex;
     font-weight: bold;
-    color: var(--dark-background-dark);
+    color: rgba(130, 125, 140, 1);
     margin: 70px auto 30px auto;
     font-size: 3em;
 }
