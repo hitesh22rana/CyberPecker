@@ -4,7 +4,7 @@
     width: 280px;
     min-height: 350px;
     height: auto;
-    background-color: rgba(241, 250, 238 , 0.5);
+    background-color: rgba(241, 250, 238);
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     margin: 20px;
     border-radius: 4px;
@@ -76,5 +76,5 @@
 
 #read-more-button:hover {
     color: whitesmoke;
-    background-color: var(--dark-background-light);
+    background-color: #191919;
 }
