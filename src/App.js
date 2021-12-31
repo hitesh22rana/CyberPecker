@@ -2,7 +2,7 @@ import Categories from './components/Categories';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import { useState } from 'react';
-
+import './colorToggle.css';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,12 +13,13 @@ import {
 function App() {
 
   const [sidebar, setSidebar] = useState(false);
+  const [bgmode, setBgMode] = useState(false);
 
   return (
-    <div className="App">
+    <div  className = "App" style={bgmode === true ? {backgroundColor : '#f3f6f9'} : {backgroundColor : '#191919'}}>
         <Router>
-          <Navbar setSidebar={setSidebar} sidebar={sidebar}/>
-          <Categories sidebar={sidebar}/>
+          <Navbar setSidebar={setSidebar} sidebar={sidebar} setBgMode={setBgMode} bgmode={bgmode}/>
+          <Categories sidebar={sidebar} bgmode={bgmode}/>
           <Routes>
             <Route eaxct path="/" element = {<News key="basic" category="basic"/>}></Route>
             <Route exact path="/dataBreach" element = {<News key="dataBreach" category="dataBreach"/>}></Route>
