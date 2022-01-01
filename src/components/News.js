@@ -33,19 +33,18 @@ export class News extends Component {
 
     render() {
         return (
-            <section id="news-section">
-                <h1 className="news-topic-heading">
-                    Headlines
-                </h1>
+            <>
                 {this.state.loading === true && <Spinner/>}
-                <div className="news-container">
-                {this.state.articles.map((element) => {
-                    return <div className="news" key={element.id}>
-                        <NewsItem title = {element.headlines?element.headlines:""} author = {element.author?element.author:"Unknown"} description = {element.fullNews.length > 200 ? element.fullNews.slice(0 , 200) + '...' : element.fullNews} imgURL = {element.imgToURL?element.imgToURL:logo} newsURL = {element.newsUrl}/>
+                <section id="news-section">
+                    <div className="news-container">
+                    {this.state.articles.map((element) => {
+                        return <div className="news" key={element.id}>
+                            <NewsItem title = {element.headlines?element.headlines:""} author = {element.author?element.author:"Unknown"} description = {element.fullNews.length > 200 ? element.fullNews.slice(0 , 200) + '...' : element.fullNews} imgURL = {element.imgToURL?element.imgToURL:logo} newsURL = {element.newsUrl}/>
+                        </div>
+                    })}
                     </div>
-                })}
-                </div>
-            </section>
+                </section>
+            </>
         )
     }
 }
