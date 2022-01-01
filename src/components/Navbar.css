@@ -181,3 +181,13 @@ input:checked+.slider:before {
   }
 
 }
+
+@media (min-width:1600px) {
+  .left-nav-bar a {
+    font-size: 2em;
+  }
+
+  .right-nav-bar {
+    transform: scale(1.4);
+  }
+}
