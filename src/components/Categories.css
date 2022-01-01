@@ -1,12 +1,12 @@
 .categories-container {
-    position: relative;
+    position: absolute;
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: auto;
     z-index: 999;
-    top: 62px;
+    top: 61px;
 }
 
 .active {
@@ -19,4 +19,10 @@
     flex-direction: column;
     width: 100%;
     height: auto;
+}
+
+@media (max-width : 600px) {
+    .categories-container {
+        top: 44px;
+    }
 }
