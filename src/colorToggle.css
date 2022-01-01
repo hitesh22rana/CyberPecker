@@ -48,12 +48,6 @@
     transform: scale(1.1);
 }
 
-@media (max-width : 600px) {
-    .categories-container {
-        top: 45px;
-    }
-}
-
 @media (min-width : 1600px) {
     .dark-mode-categories-list {
         width: 18%;
@@ -110,12 +104,6 @@
 
 .light-mode-categories-list a:hover {
     transform: scale(1.1);
-}
-
-@media (max-width : 600px) {
-    .categories-container {
-        top: 45px;
-    }
 }
 
 @media (min-width : 1600px) {
