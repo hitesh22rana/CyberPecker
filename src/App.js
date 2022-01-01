@@ -1,5 +1,6 @@
-import Categories from './components/Categories';
 import Navbar from './components/Navbar';
+import Headline from './components/Headline';
+import Categories from './components/Categories';
 import News from './components/News';
 import { useState } from 'react';
 import './colorToggle.css';
@@ -19,6 +20,7 @@ function App() {
     <div  className = "App" style={bgmode === true ? {backgroundColor : '#f3f6f9'} : {backgroundColor : '#191919'}}>
         <Router>
           <Navbar setSidebar={setSidebar} sidebar={sidebar} setBgMode={setBgMode} bgmode={bgmode}/>
+          <Headline bgmode={bgmode}/>
           <Categories sidebar={sidebar} bgmode={bgmode}/>
           <Routes>
             <Route eaxct path="/" element = {<News key="basic" category="basic"/>}></Route>
