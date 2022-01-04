@@ -48,6 +48,20 @@
     transform: scale(1.1);
 }
 
+.dark-mode-footer-section {
+    color: var(--light-background-primary);
+    background-color: var(--dark-background-secondary);
+}
+
+.dark-footer-content {
+    color: var(--light-background-primary);
+    transition: .3s all;
+}
+
+.dark-footer-content:hover {
+    color:rgba(245, 245, 245, 0.8);
+}
+
 @media (min-width : 1600px) {
     .dark-mode-categories-list {
         width: 18%;
@@ -104,6 +118,20 @@
 
 .light-mode-categories-list a:hover {
     transform: scale(1.1);
+}
+
+.light-mode-footer-section {
+    color: var(--dark-background-secondary);
+    background-color: var(--light-background-primary);
+}
+
+.light-footer-content {
+    color: var(--dark-background-primary);
+    transition: .3s all;
+}
+
+.light-footer-content:hover {
+    color:rgba(25, 25, 25, 0.8);
 }
 
 @media (min-width : 1600px) {
