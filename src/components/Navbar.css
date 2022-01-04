@@ -96,7 +96,7 @@ body {
   justify-content: space-evenly;
   height: 100%;
   color: var(--light-background-light);
-  transform: scale(1.2);
+  transform: scale(1.1);
   margin: auto 20px;
   cursor: pointer;
 }
