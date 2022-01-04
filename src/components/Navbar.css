@@ -60,7 +60,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 98%;
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -178,6 +178,7 @@ input:checked+.slider:before {
 
   .right-nav-bar {
     transform: scale(1);
+    margin: auto 15px;
   }
 
 }
