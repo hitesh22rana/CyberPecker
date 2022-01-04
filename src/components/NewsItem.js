@@ -5,7 +5,7 @@ import '../colorToggle.css';
 function NewsItem(props) {
 
     // Extracting information using props
-    let {title , author , description , imgURL , newsURL} = props;
+    let {title , author , description , imgURL , newsURL , newsDate} = props;
 
     let colors = ['#e5989b','#d62828','#ef476f','#e76f51'];
 
@@ -18,7 +18,10 @@ function NewsItem(props) {
                 </div>
                 <div className="news-card-body">
                     <div className="news-card-title">{title}</div>
-                    <p className="news-card-author">by {author}</p>
+                    <div className="news-details">
+                        <p className="news-card-author">{author}</p>
+                        <p className="news-card-date">{newsDate}</p>
+                    </div>
                     <p className="news-card-text">{description}</p>
                     <a rel="noreferrer" href={newsURL} target="_blank" id="read-more-button">Read More</a>
                 </div>
