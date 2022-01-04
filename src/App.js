@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Headline from './components/Headline';
 import Categories from './components/Categories';
 import News from './components/News';
+import Footer from './components/Footer';
 import { useState } from 'react';
 import './colorToggle.css';
 import {
@@ -41,6 +42,7 @@ function App() {
             <Route exact path="/corporate" element = {<News key="corporate" category="corporate"/>}></Route>
             <Route exact path="/socialMedia" element = {<News key="socialMedia" category="socialMedia"/>}></Route>
           </Routes>
+          <Footer bgmode={bgmode}/>
         </Router>
     </div>
   );
