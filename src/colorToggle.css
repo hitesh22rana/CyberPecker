@@ -19,33 +19,29 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 250px;
     height: 100vh;
+    padding: 20px;
     background-color: var(--dark-background-secondary);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .dark-mode-categories-list a {
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 1.2em;
     margin: 5px;
     font-weight: 500;
-    padding: 2px 2px 4px 10px;
-    color: var(--light-background-primary);
+    padding: 2px;
     transition: .3s all ease-in-out;
-    border-bottom: 1px solid #848884;
+    color: var(--light-background-primary);
 }
 
 .dark-mode-categories-list a:hover {
     color: #c88e61;
 }
 
-
-.dark-mode-categories-list a:nth-last-child(1) {
-    border-bottom: none;
-}
-
 .dark-mode-categories-list a:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .dark-mode-footer-section {
@@ -64,7 +60,7 @@
 
 @media (min-width : 1600px) {
     .dark-mode-categories-list {
-        width: 18%;
+        width: 350px;
         align-items: stretch;
         letter-spacing: 3px;
     }
@@ -91,33 +87,29 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 250px;
     height: 100vh;
+    padding: 20px;
     background-color: var(--light-background-primary);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .light-mode-categories-list a {
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 1.2em;
     margin: 5px;
     font-weight: 600;
-    padding: 2px 2px 4px 10px;
-    color: var(--dark-background-primary);
+    padding: 2px;
     transition: .3s all ease-in-out;
-    border-bottom: 1px solid #848884;
+    color: var(--dark-background-primary);
 }
 
 .light-mode-categories-list a:hover {
     color: #c88e61;
 }
 
-
-.light-mode-categories-list a:nth-last-child(1) {
-    border-bottom: none;
-}
-
 .light-mode-categories-list a:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .light-mode-footer-section {
@@ -136,7 +128,7 @@
 
 @media (min-width : 1600px) {
     .light-mode-categories-list {
-        width: 18%;
+        width: 350px;
         align-items: stretch;
         letter-spacing: 3px;
     }
