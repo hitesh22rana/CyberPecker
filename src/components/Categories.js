@@ -9,22 +9,22 @@ function Categories({sidebar , bgmode}) {
             <div className="categories">
                 <div className={bgmode === true ? 'light-mode-categories-list' : 'dark-mode-categories-list'}>
                     <Link to="/">Home</Link>
-                    <Link to="/dataBreach">Data Breach</Link>
-                    <Link to="/cyberAttack">Cyber Attack</Link>
-                    <Link to="/vulnerability">Vulnerability</Link>
-                    <Link to="/malware">Malware</Link>
-                    <Link to="/security">Security</Link>
-                    <Link to="/privacy">Privacy</Link>
-                    <Link to="/crypto">Crypto</Link>
-                    <Link to="/cloud">Cloud</Link>
-                    <Link to="/tech">Tech</Link>
-                    <Link to="/iot">IOT</Link>
-                    <Link to="/bigData">BigData</Link>
-                    <Link to="/business">Business</Link>
-                    <Link to="/mobility">Mobility</Link>
-                    <Link to="/research">Research</Link>
-                    <Link to="/corporate">Corporate</Link>
-                    <Link to="/socialMedia">Social Media</Link>
+                    <Link to="/dataBreach">Data Breach News</Link>
+                    <Link to="/cyberAttack">Cyber Attack News</Link>
+                    <Link to="/vulnerability">Vulnerability News</Link>
+                    <Link to="/malware">Malware News</Link>
+                    <Link to="/security">Security News</Link>
+                    <Link to="/privacy">Privacy News</Link>
+                    <Link to="/crypto">Crypto News</Link>
+                    <Link to="/cloud">Cloud News</Link>
+                    <Link to="/tech">Tech News</Link>
+                    <Link to="/iot">IOT News</Link>
+                    <Link to="/bigData">BigData news</Link>
+                    <Link to="/business">Business news</Link>
+                    <Link to="/mobility">Mobility news</Link>
+                    <Link to="/research">Research news</Link>
+                    <Link to="/corporate">Corporate news</Link>
+                    <Link to="/socialMedia">Social Media news</Link>
                 </div>
             </div>
             </section>
