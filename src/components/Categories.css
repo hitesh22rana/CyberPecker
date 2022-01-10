@@ -6,7 +6,9 @@
     justify-content: center;
     height: auto;
     z-index: 999;
-    top: 61px;
+    top: 0px;
+    left: 0px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .active {
@@ -19,10 +21,5 @@
     flex-direction: column;
     width: 100%;
     height: auto;
-}
-
-@media (max-width : 600px) {
-    .categories-container {
-        top: 44px;
-    }
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
