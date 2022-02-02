@@ -37,7 +37,7 @@ export class News extends Component {
                 {this.state.loading === true && <Spinner/>}
                 <section id="news-section">
                     <div className="news-container">
-                    {this.state.articles.map((element) => {
+                    {this.state.articles?.map((element) => {
                         return <div className="news" key={element.id}>
                             <NewsItem title = {element.headlines?element.headlines:""} author = {element.author?element.author:"Unknown"} description = {element.fullNews.length > 200 ? element.fullNews.slice(0 , 200) + '...' : element.fullNews} imgURL = {element.imgToURL?element.imgToURL:logo} newsURL = {element.newsUrl} newsDate = {element.newsDate}/>
                         </div>
