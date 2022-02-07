@@ -1,52 +1,44 @@
-import React, { Component } from 'react'
+import React, { useState , useEffect } from 'react'
 import NewsItem from './NewsItem'
 import './News.css'
 import logo from '../logo.png'
 import Spinner from './Spinner'
-import PropTypes from 'prop-types'
 import '../colorToggle.css';
 
-export class News extends Component {
-    static defaultProps = {
-        category : 'basic'
-    }
 
-    static propTypes = {
-        category : PropTypes.string
-    }
+function News({ category }) {
 
-    constructor () {
-        super();
-        this.state = {
-            articles : [],
-            loading : false
+    const [articles , setArticles] = useState([]);
+
+    const [loading , setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            const url = `https://cyber-news-api.herokuapp.com/${category}`;
+            setLoading(true);
+            let data = await fetch(url);
+            let parsedData = await data.json();
+            setArticles(parsedData);
+            setLoading(false);
         }
-    }
-    async componentDidMount() {
-        let url = `https://cyber-news-api.herokuapp.com/${this.props.category}`;
-        this.setState({loading : true});
-        let data = await fetch(url);
-        let parsedData = await data.json();
-        this.setState({articles:parsedData , 
-                    loading : false})
-    }
+        fetchNews();
+    } , [category]);
 
-    render() {
-        return (
-            <>
-                {this.state.loading === true && <Spinner/>}
-                <section id="news-section">
-                    <div className="news-container">
-                    {this.state.articles?.map((element) => {
-                        return <div className="news" key={element.id}>
-                            <NewsItem title = {element.headlines?element.headlines:""} author = {element.author?element.author:"Unknown"} description = {element.fullNews.length > 200 ? element.fullNews.slice(0 , 200) + '...' : element.fullNews} imgURL = {element.imgToURL?element.imgToURL:logo} newsURL = {element.newsUrl} newsDate = {element.newsDate}/>
-                        </div>
-                    })}
+
+    return (
+        <>
+            {loading === true && <Spinner/>}
+            <section id="news-section">
+                <div className="news-container">
+                {articles?.map((element) => {
+                    return <div className="news" key={element.id}>
+                        <NewsItem title = {element.headlines?element.headlines:""} author = {element.author?element.author:"Unknown"} description = {element.fullNews.length > 200 ? element.fullNews.slice(0 , 200) + '...' : element.fullNews} imgURL = {element.imgToURL?element.imgToURL:logo} newsURL = {element.newsUrl} newsDate = {element.newsDate}/>
                     </div>
-                </section>
-            </>
-        )
-    }
+                })}
+                </div>
+            </section>
+        </>
+    )
 }
 
-export default News
+export default News;

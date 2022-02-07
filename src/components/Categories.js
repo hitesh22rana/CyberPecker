@@ -27,7 +27,7 @@ function Categories({sidebar , bgmode}) {
                     <Link to="/socialMedia">Social Media news</Link>
                 </div>
             </div>
-            </section>
+        </section>
     )
 }
 
