@@ -1,6 +1,9 @@
+<h1 align="center">
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&size=25&duration=5010&color=C88E61&center=true&vCenter=true&width=500&lines=CyberPecker)](https://git.io/typing-svg)
 
-<br>
+</h1>
+
 <div align="center" >
   <img src="https://github.com/hitesh22rana/CyberPecker/blob/main/public/logo.png?raw=true" alt="CyberPecker logo" title="CyberPecker logo" width="300">  
 </div>
