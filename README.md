@@ -1,6 +1,4 @@
-<h1 align="center" style="color:#c88e61;">
-  CyberPecker
-</h1>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&size=25&duration=5010&color=C88E61&center=true&vCenter=true&width=500&lines=CyberPecker)](https://git.io/typing-svg)
 
 <br>
 <div align="center" >
@@ -10,6 +8,6 @@
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=5010&pause=1000&color=C88E61&center=true&vCenter=true&width=500&lines=Latest+Cybersecurity+Updates)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=?Poppins&size=30&duration=5010&pause=1000&color=C88E61&center=true&vCenter=true&width=500&lines=Latest+Cybersecurity+Updates)](https://git.io/typing-svg)
 
 </div>
