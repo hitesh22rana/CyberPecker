@@ -4,6 +4,7 @@ import { NextRouter, useRouter } from 'next/router'
 import Head from '../node_modules/next/head'
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
+import SkeletonLoading from '../components/SkeletonLoading'
 
 import requests from '../utils/requests'
 import { NewsData, NewsDataArray } from '../utils/interfaces'
@@ -19,21 +20,18 @@ export async function getServerSideProps(context) {
 
     const dataUrl = requests[dataString]?.url || requests?.fetchBasic?.url
 
+    const data: NewsDataArray = await fetch(dataUrl).then((res) => res.json())
+
     return {
-        props: (async function () {
-            const data: NewsDataArray = await fetch(dataUrl).then((res) =>
-                res.json()
-            )
-            return {
-                results: data,
-            }
-        })(),
+        props: {
+            results: data,
+        },
     }
 }
 
 export default function Home(props): JSX.Element {
     const router: NextRouter = useRouter()
-    const query = router.query
+    const query = router?.query
 
     const [data, setData] = useState<Array<NewsData>>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -45,19 +43,14 @@ export default function Home(props): JSX.Element {
             setData(response)
 
             setTimeout(() => {
-                router.isReady && setIsLoading((prev) => !prev)
+                router?.isReady &&
+                    !router?.isFallback &&
+                    response?.length > 0 &&
+                    setIsLoading((prev) => !prev)
             }, 1000)
         }
         fetchData()
-    }, [router.isReady, props.results])
-
-    if (isLoading) {
-        return (
-            <div className="flex w-full h-screen justify-center items-center">
-                <span className="loader"></span>
-            </div>
-        )
-    }
+    }, [router?.isReady, props?.results, router?.isFallback])
 
     function capitalize(str: string): string {
         return str[0].toUpperCase() + str.slice(1)
@@ -83,7 +76,9 @@ export default function Home(props): JSX.Element {
                 <Navbar />
             </div>
 
-            <Results data={data} />
+            {isLoading && <SkeletonLoading />}
+
+            {!isLoading && <Results data={data} />}
         </div>
     )
 }
