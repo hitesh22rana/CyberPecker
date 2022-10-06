@@ -4,19 +4,15 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const SkeletonCard = (): JSX.Element => {
     return (
         <div className="p-2 my-4 mx-2 3xl:w-[500px]">
-            <span className="flex justify-center w-auto h-auto">
-                <Skeleton />
-            </span>
-
-            <div className="w-auto h-auto">
-                <Skeleton className="min-w-[250px] min-h-[300px] max-w-[1920px] max-h-[1080px]" />
-                {/* <img
+            <div className="relative w-auto h-auto overflow-hidden bg-[#313131]">
+                <span className="skeletonImg"></span>
+                <img
                     src="noImage.png"
                     alt="news-img"
                     width={1920}
                     height={1080}
                     className="opacity-0"
-                /> */}
+                />
             </div>
 
             <div className="flex flex-col mt-1">
