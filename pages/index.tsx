@@ -47,7 +47,7 @@ export default function Home(props): JSX.Element {
                     !router?.isFallback &&
                     response?.length > 0 &&
                     setIsLoading((prev) => !prev)
-            }, 1000)
+            }, 500)
         }
         fetchData()
     }, [router?.isReady, props?.results, router?.isFallback])
