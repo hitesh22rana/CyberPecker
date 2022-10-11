@@ -8,6 +8,8 @@ import SkeletonLoading from '../components/SkeletonLoading'
 
 import requests from '../utils/requests'
 import { NewsData, NewsDataArray } from '../utils/interfaces'
+import Image from 'next/image'
+import useWindowSize from '../hooks/useWindowSize'
 
 export async function getServerSideProps(context) {
     function capitalize(str: string): string {
@@ -36,6 +38,8 @@ export default function Home(props): JSX.Element {
     const [data, setData] = useState<Array<NewsData>>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    const currentHeight: number = useWindowSize()
+
     useEffect(() => {
         async function fetchData() {
             setIsLoading((prev) => !prev)
@@ -54,6 +58,10 @@ export default function Home(props): JSX.Element {
 
     function capitalize(str: string): string {
         return str[0].toUpperCase() + str.slice(1)
+    }
+
+    function handleScrollToTop() {
+        window.scroll(0, 0)
     }
 
     return (
@@ -79,6 +87,20 @@ export default function Home(props): JSX.Element {
             {isLoading && <SkeletonLoading />}
 
             {!isLoading && <Results data={data} />}
+
+            {currentHeight > 100 && (
+                <button
+                    className="cursor-pointer fixed bottom-[10px] right-[10px] w-[35px] h-[35px] sm:bottom-[20px] sm:right-[20px] sm:w-[50px] sm:h-[50px] rounded-full bg-white/80 outline-none border-none z-50 hover:bg-white/65 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 shadow-md backdrop-blur-lg"
+                    onClick={handleScrollToTop}
+                >
+                    <Image
+                        width={'100%'}
+                        height={'100%'}
+                        src="/arrow.png"
+                        alt="arrow"
+                    />
+                </button>
+            )}
         </div>
     )
 }
