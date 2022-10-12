@@ -1,0 +1,54 @@
+name: Build
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+    workflow_dispatch:
+
+jobs:
+    # Linting Check
+    lint:
+        name: lint
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Node Version Setup
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+              run: npm install -g yarn
+            - name: Install Dependencies
+              run: |
+                  echo "Installing Dependencies..."
+                  yarn install --frozen-lockfile
+            - name: Lint Check
+              run: |
+                  echo "Running Linting Test..."
+                  yarn next lint
+              env:
+                  API_URL: ${{ secrets.API_URL }}
+
+    # Build job
+    build:
+        name: build
+        runs-on: ubuntu-latest
+        needs: [lint]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Node Version Setup
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+              run: npm install -g yarn
+            - name: Building
+              run: |
+                  echo "Building..."
+                  yarn install --frozen-lockfile
+                  yarn next build
+              env:
+                  API_URL: ${{ secrets.API_URL }}
