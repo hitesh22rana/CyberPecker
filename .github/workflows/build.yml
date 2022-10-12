@@ -6,21 +6,17 @@ on:
     pull_request:
         branches: [main]
 
-    workflow_dispatch:
-
 jobs:
     # Linting Check
     lint:
         name: lint
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-            - name: Node Version Setup
-              uses: actions/setup-node@v3
-              with:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+            - with:
                   node-version: 16
-              run: npm install -g yarn
+            - run: npm install -g yarn
             - name: Install Dependencies
               run: |
                   echo "Installing Dependencies..."
@@ -38,13 +34,11 @@ jobs:
         runs-on: ubuntu-latest
         needs: [lint]
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-            - name: Node Version Setup
-              uses: actions/setup-node@v3
-              with:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+            - with:
                   node-version: 16
-              run: npm install -g yarn
+            - run: npm install -g yarn
             - name: Building
               run: |
                   echo "Building..."
