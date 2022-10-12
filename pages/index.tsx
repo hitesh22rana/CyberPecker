@@ -5,10 +5,10 @@ import Head from '../node_modules/next/head'
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
 import SkeletonLoading from '../components/SkeletonLoading'
+import Footer from '../components/Footer'
 
 import requests from '../utils/requests'
 import { NewsData, NewsDataArray } from '../utils/interfaces'
-import Image from 'next/image'
 import useWindowSize from '../hooks/useWindowSize'
 
 export async function getServerSideProps(context) {
@@ -88,12 +88,14 @@ export default function Home(props): JSX.Element {
 
             {!isLoading && <Results data={data} />}
 
+            <Footer />
+
             {currentHeight > 100 && (
                 <button
                     className="cursor-pointer fixed bottom-[10px] right-[10px] w-[35px] h-[35px] sm:bottom-[20px] sm:right-[20px] sm:w-[50px] sm:h-[50px] rounded-full bg-white/80 outline-none border-none z-50 hover:bg-white/65 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 shadow-md backdrop-blur-lg"
                     onClick={handleScrollToTop}
                 >
-                    <Image
+                    <img
                         width={'100%'}
                         height={'100%'}
                         src="/arrow.png"
