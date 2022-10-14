@@ -18,7 +18,7 @@ const index = ({ individualData }: PropsData): JSX.Element => {
                     href={individualData?.newsURL}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex justify-center w-auto h-auto"
+                    className="flex justify-center w-auto h-auto border-[1px] border-stone-700"
                 >
                     <img
                         src={individualData?.newsImgURL}

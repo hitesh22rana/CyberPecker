@@ -34,8 +34,18 @@ export default function Index() {
                             title === query?.category?.toString()
                                 ? {
                                       color: 'rgb(239, 68, 68)',
+                                      userSelect: 'none',
+                                      WebkitUserSelect: 'none',
+                                      MozUserSelect: 'none',
+                                      msUserSelect: 'none',
                                   }
-                                : { color: 'rgb(209, 213, 219)' }
+                                : {
+                                      color: 'rgb(209, 213, 219)',
+                                      userSelect: 'none',
+                                      WebkitUserSelect: 'none',
+                                      MozUserSelect: 'none',
+                                      msUserSelect: 'none',
+                                  }
                         }
                     >
                         {title === '' ? 'General' : capitalize(title)}
@@ -43,7 +53,7 @@ export default function Index() {
                 ))}
             </div>
 
-            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#06202A] h-10 w-1/12 4xl:hidden"></div>
+            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#06202A] h-8 w-1/12 4xl:hidden"></div>
         </div>
     )
 }
