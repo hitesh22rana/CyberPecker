@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -6,8 +7,8 @@ const SkeletonCard = (): JSX.Element => {
         <div className="p-2 my-4 mx-2 3xl:w-[500px]">
             <div className="relative w-auto h-auto overflow-hidden bg-[#313131]">
                 <span className="skeletonImg"></span>
-                <img
-                    src="noImage.png"
+                <Image
+                    src="/noImage.png"
                     alt="news-img"
                     width={1920}
                     height={1080}

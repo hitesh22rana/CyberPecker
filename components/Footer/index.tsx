@@ -6,7 +6,7 @@ import { SiLeetcode } from 'react-icons/si'
 
 const index = () => {
     return (
-        <div className="flex sm:flex-row items-center sm:justify-between mx-auto my-4 max-w-screen-xl flex-col justify-center">
+        <div className="flex sm:flex-row items-center xl:justify-between mx-auto my-4 max-w-screen-xl flex-col justify-center">
             <Link href="/" className="cursor-pointer">
                 <div className="flex flex-col gap-2 mx-4">
                     <Image
