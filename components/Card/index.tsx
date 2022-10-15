@@ -18,7 +18,7 @@ const index = ({ individualData }: PropsData): JSX.Element => {
                     href={individualData?.newsURL}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex justify-center w-auto h-auto border-[1px] border-stone-700"
+                    className="flex justify-center w-auto h-auto"
                 >
                     <img
                         src={individualData?.newsImgURL}
@@ -29,6 +29,7 @@ const index = ({ individualData }: PropsData): JSX.Element => {
                         alt="news-img"
                         width={1920}
                         height={1080}
+                        className="border-[1px] hover:border-2 border-stone-700"
                     />
                 </a>
                 <div className="flex flex-col mt-1">

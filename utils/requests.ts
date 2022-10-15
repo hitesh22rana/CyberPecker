@@ -29,7 +29,7 @@ export default {
         title: 'cloud',
         url: API_URL + 'cloud',
     },
-    fetchTechnology: {
+    fetchTech: {
         title: 'tech',
         url: API_URL + 'tech',
     },
