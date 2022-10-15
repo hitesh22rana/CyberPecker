@@ -39,7 +39,7 @@ const SkeletonCard = (): JSX.Element => {
     )
 }
 
-const index = (): JSX.Element => {
+const Index = (): JSX.Element => {
     return (
         <div className="mx-w-[2800px] px-5 my-10 sm:grid md:grid-cols-2 newxl:grid-cols-3 mx-auto 3xl:flex flex-wrap justify-center">
             {'123456'.split('')?.map((_, index: number) => (
@@ -49,4 +49,4 @@ const index = (): JSX.Element => {
     )
 }
 
-export default index
+export default Index

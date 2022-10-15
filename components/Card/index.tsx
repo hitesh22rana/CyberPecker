@@ -4,7 +4,7 @@ interface PropsData {
     individualData: NewsData
 }
 
-const index = ({ individualData }: PropsData): JSX.Element => {
+const Index = ({ individualData }: PropsData): JSX.Element => {
     function countWords(str: string): number {
         return str.split(' ').filter(function (n) {
             return n != ''
@@ -59,4 +59,4 @@ const index = ({ individualData }: PropsData): JSX.Element => {
     )
 }
 
-export default index
+export default Index
