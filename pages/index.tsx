@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { NextRouter, useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
 import Head from '../node_modules/next/head'
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
 import SkeletonLoading from '../components/SkeletonLoading'
-import Footer from '../components/Footer'
+
+const Footer = dynamic(() => import('../components/Footer'))
 
 import requests from '../utils/requests'
 import { NewsData, NewsDataArray } from '../utils/interfaces'

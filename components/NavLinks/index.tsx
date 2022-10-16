@@ -33,7 +33,7 @@ export default function Index() {
                             (title === 'general' && !query?.category) ||
                             title === query?.category?.toString()
                                 ? {
-                                      color: 'rgb(239, 68, 68)',
+                                      color: '#f44d30',
                                       userSelect: 'none',
                                       WebkitUserSelect: 'none',
                                       MozUserSelect: 'none',
