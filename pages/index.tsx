@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-
 import Head from '../node_modules/next/head'
+
+import NextNProgress from 'nextjs-progressbar'
+
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
 import SkeletonLoading from '../components/SkeletonLoading'
@@ -82,6 +84,9 @@ export default function Home(props): JSX.Element {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+            <NextNProgress color="#f44d30" showOnShallow={true} height={4} />
+
             <div>
                 <Navbar />
             </div>
