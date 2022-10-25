@@ -18,7 +18,7 @@ function useFetchData(props) {
                     !router?.isFallback &&
                     response?.length > 0 &&
                     setIsLoading((prev) => !prev)
-            }, 500)
+            }, 250)
         }
         fetchData()
     }, [router?.isReady, props?.results, router?.isFallback])
