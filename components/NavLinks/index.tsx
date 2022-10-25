@@ -1,13 +1,11 @@
 import { NextRouter, useRouter } from 'next/router'
+
+import { capitalize } from '../../utils/helperFunctions'
 import requests from '../../utils/requests'
 
 export default function Index() {
     const router: NextRouter = useRouter()
     const query = router.query
-
-    function capitalize(str: string): string {
-        return str[0].toUpperCase() + str.slice(1)
-    }
 
     function handleCategory(title: string): void {
         if (

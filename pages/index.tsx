@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Head from '../node_modules/next/head'
@@ -12,14 +11,13 @@ import SkeletonLoading from '../components/SkeletonLoading'
 const Footer = dynamic(() => import('../components/Footer'))
 
 import requests from '../utils/requests'
-import { NewsData, NewsDataArray } from '../utils/interfaces'
+import { capitalize, handleScrollToTop } from '../utils/helperFunctions'
+import { NewsDataArray } from '../utils/interfaces'
+
 import useWindowSize from '../hooks/useWindowSize'
+import useFetchData from '../hooks/useFetchData'
 
 export async function getServerSideProps(context) {
-    function capitalize(str: string): string {
-        return str?.charAt(0).toUpperCase() + str?.slice(1)
-    }
-
     const { category } = context.query
 
     const dataString = `fetch${capitalize(category)}`
@@ -39,34 +37,8 @@ export default function Home(props): JSX.Element {
     const router: NextRouter = useRouter()
     const query = router?.query
 
-    const [data, setData] = useState<Array<NewsData>>([])
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-
+    const { isLoading, data } = useFetchData(props)
     const currentHeight: number = useWindowSize()
-
-    useEffect(() => {
-        async function fetchData() {
-            setIsLoading((prev) => !prev)
-            const response = await props.results
-            setData(response)
-
-            setTimeout(() => {
-                router?.isReady &&
-                    !router?.isFallback &&
-                    response?.length > 0 &&
-                    setIsLoading((prev) => !prev)
-            }, 500)
-        }
-        fetchData()
-    }, [router?.isReady, props?.results, router?.isFallback])
-
-    function capitalize(str: string): string {
-        return str[0].toUpperCase() + str.slice(1)
-    }
-
-    function handleScrollToTop() {
-        window.scroll(0, 0)
-    }
 
     return (
         <div>
