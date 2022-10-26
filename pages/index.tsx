@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Head from '../node_modules/next/head'
@@ -12,10 +13,9 @@ const Footer = dynamic(() => import('../components/Footer'))
 
 import requests from '../utils/requests'
 import { capitalize, handleScrollToTop } from '../utils/helperFunctions'
-import { NewsDataArray } from '../utils/interfaces'
+import { NewsData, NewsDataArray } from '../utils/interfaces'
 
 import useWindowSize from '../hooks/useWindowSize'
-import useFetchData from '../hooks/useFetchData'
 
 export async function getServerSideProps(context) {
     const { category } = context.query
@@ -37,7 +37,25 @@ export default function Home(props): JSX.Element {
     const router: NextRouter = useRouter()
     const query = router?.query
 
-    const { isLoading, data } = useFetchData(props)
+    const [data, setData] = useState<Array<NewsData>>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    useEffect(() => {
+        async function fetchData() {
+            setIsLoading((prev) => !prev)
+            const response = await props.results
+            setData(response)
+
+            setTimeout(() => {
+                router?.isReady &&
+                    !router?.isFallback &&
+                    response?.length > 0 &&
+                    setIsLoading((prev) => !prev)
+            }, 200)
+        }
+        fetchData()
+    }, [router?.isReady, router?.isFallback, props?.results])
+
     const currentHeight: number = useWindowSize()
 
     return (
