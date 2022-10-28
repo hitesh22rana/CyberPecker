@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from 'next/router'
 import { capitalize } from '../../utils/helperFunctions'
 import requests from '../../utils/requests'
 
-export default function Index() {
+export default function Index({ setIsLoading }) {
     const router: NextRouter = useRouter()
     const query = router.query
 
@@ -13,6 +13,7 @@ export default function Index() {
             (title === 'general' && !query?.category)
         )
             return
+        setIsLoading(true)
         router.push(
             title !== query?.category?.toString() &&
                 (title !== 'general' ? `/?category=${title}` : '/')

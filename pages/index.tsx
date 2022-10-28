@@ -42,7 +42,6 @@ export default function Home(props): JSX.Element {
 
     useEffect(() => {
         async function fetchData() {
-            setIsLoading((prev) => !prev)
             const response = await props.results
             setData(response)
 
@@ -50,8 +49,8 @@ export default function Home(props): JSX.Element {
                 router?.isReady &&
                     !router?.isFallback &&
                     response?.length > 0 &&
-                    setIsLoading((prev) => !prev)
-            }, 200)
+                    setIsLoading(false)
+            }, 100)
         }
         fetchData()
     }, [router?.isReady, router?.isFallback, props?.results])
@@ -78,7 +77,7 @@ export default function Home(props): JSX.Element {
             <NextNProgress color="#f44d30" showOnShallow={true} height={4} />
 
             <div>
-                <Navbar />
+                <Navbar setIsLoading={setIsLoading} />
             </div>
 
             {isLoading && <SkeletonLoading />}
