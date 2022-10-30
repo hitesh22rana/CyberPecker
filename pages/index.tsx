@@ -45,15 +45,10 @@ export default function Home(props): JSX.Element {
             const response = await props.results
             setData(response)
 
-            setTimeout(() => {
-                router?.isReady &&
-                    !router?.isFallback &&
-                    response?.length > 0 &&
-                    setIsLoading(false)
-            }, 100)
+            router?.isReady && response?.length > 0 && setIsLoading(false)
         }
         fetchData()
-    }, [router?.isReady, router?.isFallback, props?.results])
+    }, [router?.isReady, props?.results])
 
     const currentHeight: number = useWindowSize()
 
@@ -67,11 +62,30 @@ export default function Home(props): JSX.Element {
                         CyberPecker
                     </title>
                 }
+
+                <meta charSet="UTF-8" />
                 <meta
-                    name="CyberPecker"
-                    content="Cyber Security News Website"
+                    httpEquiv="Content-Type"
+                    content="text/html; charset=utf-8"
                 />
-                <link rel="icon" href="/favicon.ico" />
+                <meta
+                    httpEquiv="Content-Type"
+                    content="text/html; charset=ISO-8859-1"
+                ></meta>
+                <meta name="robots" content="index, follow" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                <meta
+                    name="description"
+                    content={`
+                                Get latest CyberSecurity updates curated from different source under one roof.
+                                This page consists updates related to ${
+                                    query?.category &&
+                                    capitalize(query?.category.toString())
+                                }`}
+                />
             </Head>
 
             <NextNProgress color="#f44d30" showOnShallow={true} height={4} />

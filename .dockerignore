@@ -1,6 +1,7 @@
-.vscode
 .github
 .husky
+.next
+.vscode
 .git
 .gitignore
 README.md
