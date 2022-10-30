@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Head from '../node_modules/next/head'
+import ErrorPage from 'next/error'
 
 import NextNProgress from 'nextjs-progressbar'
 
@@ -22,7 +23,17 @@ export async function getServerSideProps(context) {
 
     const dataString = `fetch${capitalize(category)}`
 
-    const dataUrl = requests[dataString]?.url || requests?.fetchBasic?.url
+    let dataUrl = requests[dataString]?.url
+
+    if (dataUrl === undefined && category === undefined) {
+        dataUrl = requests?.fetchBasic?.url
+    } else if (dataUrl === undefined && category) {
+        return {
+            props: {
+                results: null,
+            },
+        }
+    }
 
     const data: NewsDataArray = await fetch(dataUrl).then((res) => res.json())
 
@@ -51,6 +62,10 @@ export default function Home(props): JSX.Element {
     }, [router?.isReady, props?.results])
 
     const currentHeight: number = useWindowSize()
+
+    if (!data) {
+        return <ErrorPage statusCode={404} />
+    }
 
     return (
         <div>

@@ -11,13 +11,13 @@ export default function Index({ setIsLoading }) {
         if (
             query?.category === title ||
             (title === 'general' && !query?.category)
-        )
+        ) {
             return
+        }
+
         setIsLoading(true)
-        router.push(
-            title !== query?.category?.toString() &&
-                (title !== 'general' ? `/?category=${title}` : '/')
-        )
+        title !== query?.category &&
+            router.push(title !== 'general' ? `/?category=${title}` : '/')
     }
 
     return (
