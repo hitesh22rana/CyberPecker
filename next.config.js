@@ -5,7 +5,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["https://jsln0v.deta.dev/"],
+    domains: ["https://thehackernews.com", "https://etimg.etb2bimg.com", "etimg.etb2bimg.com", "thehackernews.com"],
   },
 }
 

@@ -10,6 +10,7 @@ const Index = ({ setIsLoading }) => {
             <span
                 style={{
                     transform: `translateX(${progressCompletion - 100}%)`,
+                    transition: 'all 0.1s ease',
                 }}
                 className="fixed z-[9999] h-1 w-full bg-[#f44d30] top-0"
             />

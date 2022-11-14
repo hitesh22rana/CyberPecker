@@ -1,4 +1,5 @@
 import { NewsData } from '../../utils/interfaces'
+import ImageFallback from '../ImageFallback'
 
 interface PropsData {
     individualData: NewsData
@@ -20,15 +21,14 @@ const Index = ({ individualData }: PropsData): JSX.Element => {
                     rel="noreferrer"
                     className="flex justify-center w-auto h-auto"
                 >
-                    <img
+                    <ImageFallback
                         src={individualData?.newsImgURL}
-                        onError={({ currentTarget }) => {
-                            currentTarget.onerror = null
-                            currentTarget.src = 'noImage.png'
-                        }}
-                        alt="news-img"
+                        fallbackSrc="/noImage.png"
                         width={1920}
                         height={1080}
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
                         className="border-[1px] hover:border-2 border-stone-700"
                     />
                 </a>
