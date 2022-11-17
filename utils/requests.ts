@@ -3,7 +3,7 @@ const API_URL = process.env.API_URL
 export default {
     fetchBasic: {
         title: 'general',
-        url: API_URL + 'basic',
+        url: API_URL + 'general',
     },
     fetchDataBreach: {
         title: 'dataBreach',
