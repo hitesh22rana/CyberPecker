@@ -1,4 +1,5 @@
 import { NextRouter, useRouter } from 'next/router'
+import useHorizontalScroll from '../../hooks/useHorizontalScroll'
 
 import { capitalize } from '../../utils/helperFunctions'
 import requests from '../../utils/requests'
@@ -6,6 +7,8 @@ import requests from '../../utils/requests'
 export default function Index({ setIsLoading }) {
     const router: NextRouter = useRouter()
     const query = router.query
+
+    const scrollRef = useHorizontalScroll()
 
     function handleCategory(title: string): void {
         if (
@@ -22,7 +25,13 @@ export default function Index({ setIsLoading }) {
 
     return (
         <div className="relative w-full flex items-center justify-center">
-            <div className="w-full h-auto flex flex-row px-10 sm:px-20 text-xl font-medium tracking-wider whitespace-nowrap space-x-10 sm:space-x-16 overflow-x-scroll scrollbar-hide overflow-y-hidden">
+            <div
+                ref={scrollRef}
+                className="w-full h-auto flex flex-row px-10 sm:px-20 text-xl font-medium tracking-wider whitespace-nowrap space-x-10 sm:space-x-16 overflow-x-scroll scrollbar-hide overflow-y-hidden py-2"
+                style={{
+                    scrollBehavior: 'smooth',
+                }}
+            >
                 {Object.entries(requests).map(([key, { title }]) => (
                     <h2
                         key={key}
