@@ -158,3 +158,53 @@ a {
         margin-top: 0;
     }
 }
+
+/* Border Gradient */
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: true;
+}
+
+:root {
+    --d: 2500ms;
+    --angle: 90deg;
+    --c1: rgba(168, 239, 255, 1);
+    --c2: #121212;
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-radius: 4px;
+    border-image: conic-gradient(
+            from var(--angle),
+            var(--c2),
+            var(--c1) 0.1turn,
+            var(--c1) 0.15turn,
+            var(--c2) 0.25turn
+        )
+        30;
+}
+
+@keyframes borderRotate {
+    100% {
+        --angle: 420deg;
+    }
+}
+
+/* Modal PopUp animations */
+
+@keyframes modalPopUp {
+    0% {
+        transform: scale(0);
+    }
+}
+
+/* Text Reveal animations */
+
+@keyframes textReveal {
+    0% {
+        opacity: 0;
+    }
+}

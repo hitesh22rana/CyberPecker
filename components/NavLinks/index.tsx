@@ -61,7 +61,8 @@ export default function Index({ setIsLoading }) {
                 ))}
             </div>
 
-            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#171717] h-8 w-1/12 4xl:hidden"></div>
+            <div className="absolute top-0 left-0 bg-[#171717] h-full w-[2%] 4xl:hidden"></div>
+            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#171717] h-full w-1/12 4xl:hidden"></div>
         </div>
     )
 }

@@ -25,11 +25,11 @@ const Index = ({ src, fallbackSrc, author, date, ...rest }): JSX.Element => {
             />
 
             <div className="transition-all duration-200 group-hover:flex absolute hidden flex-row justify-between w-full bottom-0 right-0 left-0 p-2 text-white gap-4">
-                <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
+                <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis shadow">
                     {author}
                 </span>
                 <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
-                    {date}
+                    {date !== 'N/A' && date}
                 </span>
             </div>
         </div>
