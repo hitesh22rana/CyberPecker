@@ -14,7 +14,7 @@ const Index = ({ setIsLoading }) => {
                 }}
                 className="fixed z-[9999] h-1 w-full bg-[#f44d30] top-0"
             />
-            <div className="flex items-center justify-center mx-auto mt-4 mb-6 my-4 w-[80px] h-[80px] sm:mt-8 sm:w-[100px] sm:h-[100px]">
+            <div className="flex items-center justify-center mx-auto mt-4 mb-6 w-[70px] h-[70px] md:mt-8 md:w-[90px] md:h-[90px]">
                 <Image
                     src="/logo.png"
                     height={100}

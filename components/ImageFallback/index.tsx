@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-const Index = ({ src, fallbackSrc, ...rest }): JSX.Element => {
+const Index = ({ src, fallbackSrc, author, date, ...rest }): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(src)
 
     useEffect(() => {
@@ -9,19 +9,30 @@ const Index = ({ src, fallbackSrc, ...rest }): JSX.Element => {
     }, [src])
 
     return (
-        <Image
-            {...rest}
-            src={imgSrc}
-            onLoadingComplete={(result) => {
-                if (result.naturalWidth === 0) {
+        <div className="relative group">
+            <Image
+                {...rest}
+                src={imgSrc}
+                onLoadingComplete={(result) => {
+                    if (result.naturalWidth === 0) {
+                        setImgSrc(fallbackSrc)
+                    }
+                }}
+                onError={() => {
                     setImgSrc(fallbackSrc)
-                }
-            }}
-            onError={() => {
-                setImgSrc(fallbackSrc)
-            }}
-            alt="news-img"
-        />
+                }}
+                alt="news-img"
+            />
+
+            <div className="transition-all duration-200 group-hover:flex absolute hidden flex-row justify-between w-full bottom-0 right-0 left-0 p-2 text-white gap-4">
+                <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
+                    {author}
+                </span>
+                <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
+                    {date}
+                </span>
+            </div>
+        </div>
     )
 }
 

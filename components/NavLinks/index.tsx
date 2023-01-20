@@ -27,7 +27,7 @@ export default function Index({ setIsLoading }) {
         <div className="relative w-full flex items-center justify-center">
             <div
                 ref={scrollRef}
-                className="w-full h-auto flex flex-row px-10 sm:px-20 text-xl font-medium tracking-wider whitespace-nowrap space-x-10 sm:space-x-16 overflow-x-scroll scrollbar-hide overflow-y-hidden py-2"
+                className="w-full h-auto flex flex-row px-10 md:px-20 md:text-xl text-lg font-medium tracking-wider whitespace-nowrap space-x-8 sm:space-x-14 overflow-x-scroll scrollbar-hide overflow-y-hidden py-2"
                 style={{
                     scrollBehavior: 'smooth',
                 }}
@@ -36,7 +36,7 @@ export default function Index({ setIsLoading }) {
                     <h2
                         key={key}
                         onClick={() => handleCategory(title)}
-                        className="last:pr-20 cursor-pointer transition duration-100 transform hover:scale-125 hover:text-white active:text-red-500"
+                        className="sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105"
                         style={
                             (title === 'general' && !query?.category) ||
                             title === query?.category?.toString()
@@ -61,7 +61,7 @@ export default function Index({ setIsLoading }) {
                 ))}
             </div>
 
-            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#06202A] h-8 w-1/12 4xl:hidden"></div>
+            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#171717] h-8 w-1/12 4xl:hidden"></div>
         </div>
     )
 }

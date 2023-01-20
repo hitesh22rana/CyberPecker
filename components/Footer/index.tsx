@@ -18,7 +18,7 @@ const Index = () => {
                     />
                     <div className="flex flex-col gap-1 items-center">
                         <span className="font-normal sm:text-xs text-[0.6rem]">
-                            Copyright © 2022 CyberPecker.
+                            Copyright © 2023 CyberPecker.
                         </span>
                         <span className="font-normal sm:text-xs text-[0.6rem]">
                             All Rights Reserved.

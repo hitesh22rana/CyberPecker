@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const SkeletonCard = (): JSX.Element => {
     return (
-        <div className="p-2 my-4 mx-2 3xl:w-[500px]">
+        <div className="p-2 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow">
             <div className="relative w-auto h-auto overflow-hidden bg-[#313131]">
                 <span className="skeletonImg"></span>
                 <Image
@@ -21,30 +21,24 @@ const SkeletonCard = (): JSX.Element => {
                     <Skeleton />
                 </h3>
 
-                <div className="flex flex-row items-center justify-between">
-                    <span className="w-[80px]">
-                        <Skeleton />
-                    </span>
-
-                    <span className="w-[50px]">
-                        <Skeleton />
-                    </span>
-                </div>
-
-                <h4 className="font-light whitespace-normal text-[0.85em] mt-4">
+                <p className="font-light whitespace-normal text-[0.85em] mt-4">
                     <Skeleton count={3} />
-                </h4>
+                </p>
             </div>
         </div>
     )
 }
 
 const Index = (): JSX.Element => {
+    const SkeletonCount = 8
+
     return (
-        <div className="mx-w-[2800px] px-5 my-10 sm:grid md:grid-cols-2 newxl:grid-cols-3 mx-auto 3xl:flex flex-wrap justify-center">
-            {'123456'.split('')?.map((_, index: number) => (
-                <SkeletonCard key={index} />
-            ))}
+        <div className="mx-w-[2800px] sm:px-5 px-2 gap-y-3 md:my-5 my-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto 3xl:flex flex-wrap justify-center">
+            {Array(SkeletonCount)
+                .fill(1)
+                ?.map((_, index: number) => (
+                    <SkeletonCard key={index} />
+                ))}
         </div>
     )
 }
