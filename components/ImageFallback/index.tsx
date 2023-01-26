@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-const Index = ({ src, fallbackSrc, author, date, ...rest }): JSX.Element => {
+const fallbackSrc = '/noImage.png'
+
+const Index = ({ src, author, date, ...rest }): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(src)
 
     useEffect(() => {

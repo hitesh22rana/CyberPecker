@@ -17,12 +17,16 @@ const SkeletonCard = (): JSX.Element => {
             </div>
 
             <div className="flex flex-col mt-1">
-                <h3 className="font-medium whitespace-normal text-[1em]">
+                <h3 className="sm:text-[1em] text-[0.8em]">
                     <Skeleton />
                 </h3>
 
-                <p className="font-light whitespace-normal text-[0.85em] mt-4">
+                <p className="sm:hidden block text-[0.65em] mt-3">
                     <Skeleton count={3} />
+                </p>
+
+                <p className="sm:block hidden text-[0.65em] mt-4">
+                    <Skeleton count={4} />
                 </p>
             </div>
         </div>

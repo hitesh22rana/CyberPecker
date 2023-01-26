@@ -3,12 +3,6 @@ import { NewsData } from '../../utils/interfaces'
 import ImageFallback from '../ImageFallback'
 import NewsModal from '../NewsModal'
 
-function countWords(str: string): number {
-    return str.split(' ').filter(function (n) {
-        return n != ''
-    }).length
-}
-
 interface PropsData {
     individualData: NewsData
 }
@@ -49,11 +43,8 @@ const Index = ({ individualData }: PropsData): JSX.Element => {
                         {individualData?.headlines}
                     </h3>
 
-                    <p className="font-normal whitespace-normal md:text-[0.85em] text-xs md:mt-4 mt-2">
-                        {countWords(individualData?.fullNews.trim()) < 35
-                            ? individualData?.fullNews.trim()
-                            : individualData.fullNews.trim().substring(0, 180) +
-                              '...'}
+                    <p className="font-normal md:text-[0.85em] text-xs md:mt-4 mt-2 sm:line-clamp-4 line-clamp-3">
+                        {individualData?.fullNews.trim()}
                     </p>
                 </div>
             </div>

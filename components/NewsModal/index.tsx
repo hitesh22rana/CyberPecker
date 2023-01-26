@@ -1,12 +1,48 @@
+import { useState, useEffect } from 'react'
 import ImageFallback from '../ImageFallback'
 import { NewsData } from '../../utils/interfaces'
+import requests from '../../utils/requests'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN
 
 interface PropsData {
     individualData: NewsData
     onClose: () => void
 }
 
-const index = ({ individualData, onClose }: PropsData): JSX.Element => {
+const Index = ({ individualData, onClose }: PropsData): JSX.Element => {
+    const [summary, setSummary] = useState<string | null>(null)
+
+    useEffect(() => {
+        async function getSummary(data: string) {
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${API_TOKEN}`,
+                },
+                body: JSON.stringify(data),
+            }
+
+            try {
+                const result = await (
+                    await fetch(requests?.postSummary?.url, requestOptions)
+                ).json()
+
+                const summarizedData: string = result[0]?.summary_text
+
+                if (summarizedData) {
+                    setSummary(summarizedData)
+                } else {
+                    setSummary(individualData?.fullNews?.trim())
+                }
+            } catch (err) {}
+        }
+
+        getSummary(individualData?.fullNews?.trim())
+    }, [individualData?.fullNews])
+
     return (
         <>
             <div
@@ -18,7 +54,16 @@ const index = ({ individualData, onClose }: PropsData): JSX.Element => {
                 className="flex fixed flex-col items-center justify-center z-[999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto p-2 bg-[#1e1e1e] rounded shadow w-[95%] border-gradient"
                 style={{
                     transform: 'scale(1)',
+                    WebkitTransform: 'scale(1)',
+                    msTransform: 'scale(1)',
+                    OTransform: 'scale(1)',
                     animation:
+                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                    WebkitAnimation:
+                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                    MozAnimation:
+                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                    OAnimation:
                         'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
                 }}
             >
@@ -30,9 +75,9 @@ const index = ({ individualData, onClose }: PropsData): JSX.Element => {
                 >
                     <ImageFallback
                         src={individualData?.newsImgURL}
-                        fallbackSrc="/noImage.png"
                         width={1920}
                         height={1080}
+                        quality={100}
                         author={
                             individualData.author
                                 ? individualData?.author
@@ -46,17 +91,21 @@ const index = ({ individualData, onClose }: PropsData): JSX.Element => {
                     />
                 </a>
                 <div
-                    className="flex flex-col mt-1"
+                    className="flex flex-col mt-1 justify-start items-start w-full"
                     style={{
                         animation: 'textReveal ease-in 0.3s',
                     }}
                 >
-                    <h3 className="font-medium whitespace-normal md:text-base text-sm">
+                    <h3 className="text-left font-medium whitespace-normal md:text-base text-sm w-full">
                         {individualData?.headlines}
                     </h3>
 
-                    <p className="md:font-normal font-light whitespace-normal md:text-xs text-[0.65em] leading-3 md:mt-3 mt-2">
-                        {individualData?.fullNews.trim()}
+                    <p className="text-left md:font-normal font-light whitespace-normal md:text-xs text-[0.65em] leading-3 md:mt-3 mt-2 w-full">
+                        {summary || (
+                            <>
+                                <Skeleton count={5} />
+                            </>
+                        )}
                     </p>
                 </div>
             </div>
@@ -64,4 +113,4 @@ const index = ({ individualData, onClose }: PropsData): JSX.Element => {
     )
 }
 
-export default index
+export default Index

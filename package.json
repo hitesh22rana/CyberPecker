@@ -10,6 +10,7 @@
         "type-check": "tsc"
     },
     "dependencies": {
+        "@tailwindcss/line-clamp": "^0.4.2",
         "@types/node": "^18.7.19",
         "@types/react": "^18.0.14",
         "next": "^12.3.1",
