@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { SiLeetcode } from 'react-icons/si'
+import { RiSuitcaseLine } from 'react-icons/ri'
 
 const Index = () => {
     return (
@@ -27,8 +27,17 @@ const Index = () => {
                 </div>
             </Link>
             <div className="flex flex-col gap-2 mx-4 my-4 sm:my-0">
-                <h3 className="sm:text-base text-sm">Connect with me!</h3>
+                <h3 className="sm:text-base text-sm">Reach me out!</h3>
                 <div className="flex flex-row items-center justify-center gap-4">
+                    <a
+                        href="https://hitesh22rana.netlify.app/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="cursor-pointer text-white sm:text-2xl text-lg hover:bg-white/65 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 shadow-md"
+                    >
+                        <RiSuitcaseLine />
+                    </a>
+
                     <a
                         href="https://github.com/hitesh22rana"
                         target="_blank"
@@ -45,15 +54,6 @@ const Index = () => {
                         className="cursor-pointer text-white sm:text-2xl text-lg hover:bg-white/65 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 shadow-md"
                     >
                         <FaLinkedin />
-                    </a>
-
-                    <a
-                        href="https://leetcode.com/Hitesh_Rana/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="cursor-pointer text-white sm:text-2xl text-lg hover:bg-white/65 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 shadow-md"
-                    >
-                        <SiLeetcode />
                     </a>
                 </div>
             </div>
