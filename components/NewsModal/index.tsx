@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+
 import ImageFallback from '../ImageFallback'
 import { NewsData } from '../../utils/interfaces'
 import requests from '../../utils/requests'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-
-const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN
 
 interface PropsData {
     individualData: NewsData
@@ -15,33 +15,32 @@ interface PropsData {
 const Index = ({ individualData, onClose }: PropsData): JSX.Element => {
     const [summary, setSummary] = useState<string | null>(null)
 
+    const fullNews = individualData?.fullNews?.trim()
+
     useEffect(() => {
         async function getSummary(data: string) {
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${API_TOKEN}`,
-                },
-                body: JSON.stringify(data),
-            }
-
             try {
-                const result = await (
-                    await fetch(requests?.postSummary?.url, requestOptions)
-                ).json()
-
-                const summarizedData: string = result[0]?.summary_text
-
-                if (summarizedData) {
-                    setSummary(summarizedData)
-                } else {
-                    setSummary(individualData?.fullNews?.trim())
-                }
-            } catch (err) {}
+                const response = await axios.post(
+                    requests?.postSummary?.url,
+                    {
+                        data: data,
+                    },
+                    {
+                        headers: {
+                            accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                )
+                const summarizedData: string = response?.data?.summary
+                setSummary(summarizedData)
+            } catch (err) {
+                setSummary(fullNews)
+            }
         }
 
-        getSummary(individualData?.fullNews?.trim())
-    }, [individualData?.fullNews])
+        getSummary(fullNews)
+    }, [fullNews])
 
     return (
         <>
