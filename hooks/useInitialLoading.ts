@@ -5,9 +5,7 @@ function useInitialLoading() {
 
     useEffect(() => {
         function changeLoadingState() {
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 1000)
+            setIsLoading(false)
         }
 
         changeLoadingState()

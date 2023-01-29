@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import Head from '../node_modules/next/head'
 import ErrorPage from 'next/error'
 
 import NextNProgress from 'nextjs-progressbar'
@@ -18,6 +17,7 @@ import { NewsData, NewsDataArray } from '../utils/interfaces'
 
 import useWindowSize from '../hooks/useWindowSize'
 import Image from 'next/image'
+import Pages from '../components/Seo/Pages'
 
 export async function getServerSideProps(context) {
     const { category } = context.query
@@ -69,46 +69,12 @@ export default function Home(props): JSX.Element {
     }
 
     return (
-        <div>
-            <Head>
-                {
-                    <title>
-                        {query?.category &&
-                            capitalize(query?.category.toString()) + ' | '}{' '}
-                        CyberPecker
-                    </title>
-                }
-
-                <meta charSet="UTF-8" />
-                <meta
-                    httpEquiv="Content-Type"
-                    content="text/html; charset=utf-8"
-                />
-                <meta
-                    httpEquiv="Content-Type"
-                    content="text/html; charset=ISO-8859-1"
-                ></meta>
-                <meta name="robots" content="index, follow" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1.0"
-                />
-                <meta
-                    name="description"
-                    content={`
-                                Get latest CyberSecurity updates curated from different source under one roof.
-                                This page consists updates related to ${
-                                    query?.category &&
-                                    capitalize(query?.category.toString())
-                                }`}
-                />
-            </Head>
+        <>
+            <Pages query={query} />
 
             <NextNProgress color="#f44d30" showOnShallow={true} height={4} />
 
-            <div>
-                <Navbar setIsLoading={setIsLoading} />
-            </div>
+            <Navbar setIsLoading={setIsLoading} />
 
             {isLoading && <SkeletonLoading />}
 
@@ -130,6 +96,6 @@ export default function Home(props): JSX.Element {
                     />
                 </button>
             )}
-        </div>
+        </>
     )
 }
