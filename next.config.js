@@ -6,6 +6,7 @@ const nextConfig = {
   },
   images: {
     domains: ["https://thehackernews.com", "https://etimg.etb2bimg.com", "etimg.etb2bimg.com", "thehackernews.com"],
+    minimumCacheTTL: 60,
   },
 }
 

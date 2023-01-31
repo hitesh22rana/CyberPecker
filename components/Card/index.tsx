@@ -15,7 +15,7 @@ const Index = ({ individualData }: PropsData): JSX.Element => {
             {showNewsModal && (
                 <NewsModal
                     individualData={individualData}
-                    onClose={() => setShowNewsModal(false)}
+                    setShowNewsModal={setShowNewsModal}
                 />
             )}
             <div

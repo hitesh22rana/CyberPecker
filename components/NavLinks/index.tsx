@@ -2,9 +2,9 @@ import { NextRouter, useRouter } from 'next/router'
 import useHorizontalScroll from '../../hooks/useHorizontalScroll'
 
 import { capitalize } from '../../utils/helperFunctions'
-import requests from '../../utils/requests'
+import { dataUrls } from '../../utils/requests'
 
-export default function Index({ setIsLoading }) {
+export default function Index() {
     const router: NextRouter = useRouter()
     const query = router.query
 
@@ -18,7 +18,6 @@ export default function Index({ setIsLoading }) {
             return
         }
 
-        setIsLoading(true)
         title !== query?.category &&
             router.push(title !== 'general' ? `/?category=${title}` : '/')
     }
@@ -32,7 +31,7 @@ export default function Index({ setIsLoading }) {
                     scrollBehavior: 'smooth',
                 }}
             >
-                {Object.entries(requests).map(([key, { title }]) => (
+                {Object.entries(dataUrls).map(([key, { title }]) => (
                     <h2
                         key={key}
                         onClick={() => handleCategory(title)}

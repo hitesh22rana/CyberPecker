@@ -1,6 +1,8 @@
+import axios from 'axios'
+
 const API_URL = process.env.API_URL
 
-export default {
+export const dataUrls = {
     fetchBasic: {
         title: 'general',
         url: API_URL + 'basic',
@@ -65,4 +67,15 @@ export default {
         title: 'summarize',
         url: process.env.NEXT_PUBLIC_API_URL,
     },
+}
+
+export async function fetchNews(dataUrl: string) {
+    return await axios
+        .get(dataUrl, {
+            headers: {
+                accept: 'application/json;charset=UTF-8',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response?.data)
 }

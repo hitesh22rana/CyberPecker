@@ -4,7 +4,7 @@ function useInitialLoading() {
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        function changeLoadingState() {
+        async function changeLoadingState() {
             setIsLoading(false)
         }
 

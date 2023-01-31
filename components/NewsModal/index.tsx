@@ -1,46 +1,54 @@
-import { useState, useEffect } from 'react'
+import { useState, SetStateAction, Dispatch } from 'react'
+import { useQuery } from 'react-query'
 import axios from 'axios'
 
 import ImageFallback from '../ImageFallback'
 import { NewsData } from '../../utils/interfaces'
-import requests from '../../utils/requests'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import { dataUrls } from '../../utils/requests'
 
 interface PropsData {
     individualData: NewsData
-    onClose: () => void
+    setShowNewsModal: Dispatch<SetStateAction<boolean>>
 }
 
-const Index = ({ individualData, onClose }: PropsData): JSX.Element => {
+const Index = ({
+    individualData,
+    setShowNewsModal,
+}: PropsData): JSX.Element => {
     const [summary, setSummary] = useState<string | null>(null)
 
     const fullNews = individualData?.fullNews?.trim()
 
-    useEffect(() => {
-        async function getSummary(data: string) {
-            try {
-                const response = await axios.post(
-                    requests?.postSummary?.url,
-                    {
-                        data: data,
-                    },
-                    {
-                        headers: {
-                            accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                    }
-                )
-                const summarizedData: string = response?.data?.summary
-                setSummary(summarizedData)
-            } catch (err) {
-                setSummary(fullNews)
-            }
-        }
+    async function onClose() {
+        setShowNewsModal(false)
+    }
 
-        getSummary(fullNews)
-    }, [fullNews])
+    async function getSummary() {
+        const response = await axios.post(
+            dataUrls?.postSummary?.url,
+            {
+                data: fullNews,
+            },
+            {
+                headers: {
+                    accept: 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+
+        return response
+    }
+
+    useQuery(String(individualData?.id), getSummary, {
+        onSuccess: (data) => {
+            const summarizedData: string = data?.data?.summary?.trim()
+            setSummary(summarizedData)
+        },
+        onError: () => {
+            setSummary(fullNews)
+        },
+    })
 
     return (
         <>
@@ -101,9 +109,9 @@ const Index = ({ individualData, onClose }: PropsData): JSX.Element => {
 
                     <p className="text-left md:font-normal font-light whitespace-normal md:text-xs text-[0.65em] leading-3 md:mt-3 mt-2 w-full">
                         {summary || (
-                            <>
-                                <Skeleton count={5} />
-                            </>
+                            <span className="flex justify-center items-center">
+                                <span className="loader" />
+                            </span>
                         )}
                     </p>
                 </div>

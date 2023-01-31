@@ -1,11 +1,24 @@
+import type { AppProps } from 'next/app'
+import { useState } from 'react'
 import '../styles/globals.css'
 import useInitialLoading from '../hooks/useInitialLoading'
 
-import { SkeletonTheme } from 'react-loading-skeleton'
 import Seo from '../components/Seo'
 
-function MyApp({ Component, pageProps }) {
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
+
+function MyApp({ Component, pageProps }: AppProps) {
     const isLoading: boolean = useInitialLoading()
+    const [queryClient] = useState(
+        () =>
+            new QueryClient({
+                defaultOptions: {
+                    queries: {
+                        refetchOnWindowFocus: false,
+                    },
+                },
+            })
+    )
 
     if (isLoading) {
         return (
@@ -16,12 +29,12 @@ function MyApp({ Component, pageProps }) {
     }
 
     return (
-        <>
-            <Seo />
-            <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+        <QueryClientProvider client={queryClient}>
+            <Hydrate state={pageProps.dehydratedState}>
+                <Seo />
                 <Component {...pageProps} />
-            </SkeletonTheme>
-        </>
+            </Hydrate>
+        </QueryClientProvider>
     )
 }
 

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import useScreenSize from '../../hooks/useScreenSize'
 import NavLinks from '../NavLinks'
 
-const Index = ({ setIsLoading }) => {
+const Index = () => {
     const progressCompletion: number = useScreenSize()
 
     return (
@@ -23,7 +23,7 @@ const Index = ({ setIsLoading }) => {
                     className="object-contain"
                 />
             </div>
-            <NavLinks setIsLoading={setIsLoading} />
+            <NavLinks />
         </nav>
     )
 }
