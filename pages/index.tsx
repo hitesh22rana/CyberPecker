@@ -9,10 +9,10 @@ const ScrollToTop = dynamic(() => import('../components/ScrollToTop'))
 
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
-import Pages from '../components/Seo/Pages'
 
 import { dataUrls, fetchNews } from '../utils/requests'
 import { capitalize } from '../utils/helperFunctions'
+import Head from 'next/head'
 
 export async function getServerSideProps(context) {
     const { category } = context.query
@@ -54,7 +54,15 @@ export default function Home(props): JSX.Element {
 
     return (
         <>
-            <Pages query={query} />
+            <Head>
+                {
+                    <title>
+                        {query?.category &&
+                            capitalize(query?.category.toString()) + ' | '}{' '}
+                        CyberPecker
+                    </title>
+                }
+            </Head>
             <NextNProgress color="#f44d30" showOnShallow={true} height={4} />
             <Navbar />
             <Results data={data} />

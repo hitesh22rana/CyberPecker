@@ -26,10 +26,7 @@ export default function Index() {
         <div className="relative w-full flex items-center justify-center">
             <div
                 ref={scrollRef}
-                className="w-full h-auto flex flex-row px-10 md:px-20 md:text-xl text-lg font-medium tracking-wider whitespace-nowrap space-x-8 sm:space-x-14 overflow-x-scroll scrollbar-hide overflow-y-hidden py-2"
-                style={{
-                    scrollBehavior: 'smooth',
-                }}
+                className="w-full h-auto flex flex-row px-10 md:px-20 md:text-xl text-lg font-medium tracking-wider whitespace-nowrap space-x-8 sm:space-x-14 overflow-x-scroll scrollbar-hide overflow-y-hidden py-2 scroll-smooth"
             >
                 {Object.entries(dataUrls).map(
                     ([key, { title }]) =>
@@ -37,27 +34,14 @@ export default function Index() {
                             <h2
                                 key={key}
                                 onClick={() => handleCategory(title)}
-                                className="sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105"
-                                style={
+                                className={`sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105 select-none ${
                                     (title === 'general' && !query?.category) ||
                                     title === query?.category?.toString()
-                                        ? {
-                                              color: '#f44d30',
-                                              userSelect: 'none',
-                                              WebkitUserSelect: 'none',
-                                              MozUserSelect: 'none',
-                                              msUserSelect: 'none',
-                                          }
-                                        : {
-                                              color: 'rgb(209, 213, 219)',
-                                              userSelect: 'none',
-                                              WebkitUserSelect: 'none',
-                                              MozUserSelect: 'none',
-                                              msUserSelect: 'none',
-                                          }
-                                }
+                                        ? 'text-[#f44d30]'
+                                        : 'text-[#d1d5db]'
+                                }`}
                             >
-                                {title === '' ? 'General' : capitalize(title)}
+                                {capitalize(title === '' ? 'General' : title)}
                             </h2>
                         )
                 )}
