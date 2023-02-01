@@ -31,33 +31,36 @@ export default function Index() {
                     scrollBehavior: 'smooth',
                 }}
             >
-                {Object.entries(dataUrls).map(([key, { title }]) => (
-                    <h2
-                        key={key}
-                        onClick={() => handleCategory(title)}
-                        className="sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105"
-                        style={
-                            (title === 'general' && !query?.category) ||
-                            title === query?.category?.toString()
-                                ? {
-                                      color: '#f44d30',
-                                      userSelect: 'none',
-                                      WebkitUserSelect: 'none',
-                                      MozUserSelect: 'none',
-                                      msUserSelect: 'none',
-                                  }
-                                : {
-                                      color: 'rgb(209, 213, 219)',
-                                      userSelect: 'none',
-                                      WebkitUserSelect: 'none',
-                                      MozUserSelect: 'none',
-                                      msUserSelect: 'none',
-                                  }
-                        }
-                    >
-                        {title === '' ? 'General' : capitalize(title)}
-                    </h2>
-                ))}
+                {Object.entries(dataUrls).map(
+                    ([key, { title }]) =>
+                        title !== 'summarize' && (
+                            <h2
+                                key={key}
+                                onClick={() => handleCategory(title)}
+                                className="sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105"
+                                style={
+                                    (title === 'general' && !query?.category) ||
+                                    title === query?.category?.toString()
+                                        ? {
+                                              color: '#f44d30',
+                                              userSelect: 'none',
+                                              WebkitUserSelect: 'none',
+                                              MozUserSelect: 'none',
+                                              msUserSelect: 'none',
+                                          }
+                                        : {
+                                              color: 'rgb(209, 213, 219)',
+                                              userSelect: 'none',
+                                              WebkitUserSelect: 'none',
+                                              MozUserSelect: 'none',
+                                              msUserSelect: 'none',
+                                          }
+                                }
+                            >
+                                {title === '' ? 'General' : capitalize(title)}
+                            </h2>
+                        )
+                )}
             </div>
 
             <div className="absolute top-0 left-0 bg-[#171717] h-full w-[2%] 4xl:hidden"></div>
