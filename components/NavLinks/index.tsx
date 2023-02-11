@@ -4,21 +4,23 @@ import useHorizontalScroll from '../../hooks/useHorizontalScroll'
 import { capitalize } from '../../utils/helperFunctions'
 import { dataUrls } from '../../utils/requests'
 
+const categoryTitles = Object.entries(dataUrls).map(([, { title }]) => title)
+
 export default function Index() {
     const router: NextRouter = useRouter()
     const query = router.query
+    const queryCategory = query?.category?.toString()
 
     const scrollRef = useHorizontalScroll()
 
     function handleCategory(title: string): void {
         if (
-            query?.category === title ||
-            (title === 'general' && !query?.category)
+            title === queryCategory ||
+            (title === 'general' && !queryCategory)
         ) {
             return
         }
-
-        title !== query?.category &&
+        title !== queryCategory &&
             router.push(title !== 'general' ? `/?category=${title}` : '/')
     }
 
@@ -28,15 +30,15 @@ export default function Index() {
                 ref={scrollRef}
                 className="w-full h-auto flex flex-row px-10 md:px-20 md:text-xl text-lg font-medium tracking-wider whitespace-nowrap space-x-8 sm:space-x-14 overflow-x-scroll scrollbar-hide overflow-y-hidden py-2 scroll-smooth"
             >
-                {Object.entries(dataUrls).map(
-                    ([key, { title }]) =>
+                {categoryTitles.map(
+                    (title) =>
                         title !== 'summarize' && (
                             <h2
-                                key={key}
+                                key={title}
                                 onClick={() => handleCategory(title)}
                                 className={`sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105 select-none ${
-                                    (title === 'general' && !query?.category) ||
-                                    title === query?.category?.toString()
+                                    title === queryCategory ||
+                                    (title === 'general' && !queryCategory)
                                         ? 'text-[#f44d30]'
                                         : 'text-[#d1d5db]'
                                 }`}

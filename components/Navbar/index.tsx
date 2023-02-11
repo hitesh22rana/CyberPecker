@@ -7,7 +7,7 @@ const Index = () => {
 
     return (
         <nav className="flex flex-col w-full items-center justify-center max-w-[2600px] mx-auto">
-            <span
+            <div
                 style={{
                     transform: `translateX(${progressCompletion - 100}%)`,
                     transition: 'all 0.1s ease',

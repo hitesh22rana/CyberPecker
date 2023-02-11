@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { NewsData } from '../../utils/interfaces'
 import ImageFallback from '../ImageFallback'
 import NewsModal from '../NewsModal'
@@ -7,8 +7,28 @@ interface PropsData {
     individualData: NewsData
 }
 
-const Index = ({ individualData }: PropsData): JSX.Element => {
+export default function Index({ individualData }: PropsData): JSX.Element {
     const [showNewsModal, setShowNewsModal] = useState<boolean>(false)
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+    const cardRef = useRef<HTMLDivElement>(null)
+
+    const observer = useMemo(() => {
+        return new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true)
+                }
+            })
+        })
+    }, [])
+
+    useEffect(() => {
+        observer.observe(cardRef.current)
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [observer, cardRef])
 
     return (
         <>
@@ -19,7 +39,10 @@ const Index = ({ individualData }: PropsData): JSX.Element => {
                 />
             )}
             <div
-                className="p-2 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow border-2 border-[#212121]"
+                ref={cardRef}
+                className={`p-2 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow border-2 border-[#212121] ${
+                    isVisible ? 'opacity-100' : 'opacity-0'
+                } transition duration-[250ms] ease-in`}
                 onClick={() => setShowNewsModal(true)}
             >
                 <ImageFallback
@@ -38,6 +61,7 @@ const Index = ({ individualData }: PropsData): JSX.Element => {
                     blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
                     className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform hover:scale-[1.1] hover:brightness-50"
                 />
+
                 <div className="flex flex-col mt-1">
                     <h3 className="font-medium whitespace-nowrap overflow-hidden text-ellipsis md:text-base text-sm">
                         {individualData?.headlines}
@@ -51,5 +75,3 @@ const Index = ({ individualData }: PropsData): JSX.Element => {
         </>
     )
 }
-
-export default Index

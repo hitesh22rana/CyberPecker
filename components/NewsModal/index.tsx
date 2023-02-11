@@ -17,32 +17,35 @@ const Index = ({
 }: PropsData): JSX.Element => {
     const [summary, setSummary] = useState<string | null>(null)
 
-    const fullNews = individualData?.fullNews?.trim()
+    const { fullNews } = individualData || {}
+    const { url: postSummaryUrl } = dataUrls?.postSummary || {}
 
-    async function onClose() {
-        setShowNewsModal(false)
-    }
+    const onClose = () => setShowNewsModal(false)
 
-    async function getSummary() {
-        const response = await axios.post(
-            dataUrls?.postSummary?.url,
-            {
-                data: fullNews,
-            },
-            {
-                headers: {
-                    accept: 'application/json;charset=UTF-8',
-                    'Content-Type': 'application/json',
+    const getSummary = async () => {
+        try {
+            const response = await axios.post(
+                postSummaryUrl,
+                {
+                    data: fullNews?.trim(),
                 },
-            }
-        )
+                {
+                    headers: {
+                        accept: 'application/json;charset=UTF-8',
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
 
-        return response
+            return response
+        } catch (error) {
+            throw error
+        }
     }
 
     useQuery(String(individualData?.id), getSummary, {
-        onSuccess: (data) => {
-            const summarizedData: string = data?.data?.summary?.trim()
+        onSuccess: ({ data }) => {
+            const summarizedData: string = data?.summary?.trim()
             setSummary(summarizedData)
         },
         onError: () => {
@@ -65,13 +68,13 @@ const Index = ({
                     msTransform: 'scale(1)',
                     OTransform: 'scale(1)',
                     animation:
-                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
                     WebkitAnimation:
-                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
                     MozAnimation:
-                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
                     OAnimation:
-                        'borderRotate var(--d) linear infinite forwards, modalPopUp 0.3s',
+                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
                 }}
             >
                 <a

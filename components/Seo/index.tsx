@@ -4,55 +4,59 @@ export default function Index() {
     return (
         <Head>
             <title>CyberPecker</title>
-            <meta charSet="UTF-8" />
-            <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+            <title>CyberPecker - The latest Cyber Security Updates</title>
             <meta
-                httpEquiv="Content-Type"
-                content="text/html; charset=ISO-8859-1"
+                name="description"
+                content="Get the latest Cyber Security updates curated from various sources under one roof. Stay informed with CyberPecker."
             />
-            <meta name="robots" content="index, follow" />
+            <meta
+                name="keywords"
+                content="cyber security, cybersecurity, updates, news, cyber attacks, cyber threats, online security"
+            />
+            <meta name="author" content="CyberPecker Team" />
             <meta
                 name="viewport"
                 content="width=device-width, initial-scale=1.0"
             />
-            <meta name="author" content="hitesh22rana" />
+            <meta charSet="UTF-8" />
 
+            {/* <-- Open Graph meta tags for social media sharing --> */}
             <meta
-                name="description"
-                content="Get latest Cyber Security updates curated from different source under one roof."
+                property="og:title"
+                content="CyberPecker - The latest Cyber Security Updates"
             />
-
-            <meta property="og:url" content="https://cyberpecker.vercel.app/" />
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="CyberPecker" />
             <meta
                 property="og:description"
-                content="Get latest Cyber Security updates curated from different source under one roof."
+                content="Get the latest Cyber Security updates curated from various sources under one roof. Stay informed with CyberPecker."
             />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://cyberpecker.vercel.app/" />
             <meta
                 property="og:image"
                 content="https://cyberpecker.vercel.app/logoSEO.png"
             />
 
+            {/* <-- Twitter meta tags for social media sharing --> */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta property="twitter:domain" content="cyberpecker.vercel.app" />
             <meta
-                property="twitter:url"
-                content="https://cyberpecker.vercel.app/"
+                name="twitter:title"
+                content="CyberPecker - The latest Cyber Security Updates"
             />
-            <meta name="twitter:title" content="CyberPecker" />
             <meta
                 name="twitter:description"
-                content="Get latest Cyber Security updates curated from different source under one roof."
+                content="Get the latest Cyber Security updates curated from various sources under one roof. Stay informed with CyberPecker."
             />
             <meta
                 name="twitter:image"
                 content="https://cyberpecker.vercel.app/logoSEO.png"
             />
-            <meta name="geo.position" content="latitude; longitude" />
-            <meta name="geo.placename" content="Place Name" />
-            <meta name="geo.region" content="Country Subdivision Code" />
 
+            {/* <-- Geo meta tags --> */}
+            <meta name="geo.position" content="latitude;longitude" />
+            <meta name="geo.region" content="Country Subdivision Code" />
+            <meta name="geo.placename" content="Place Name" />
+
+            {/* <!-- Link to the favicon --> */}
             <link rel="icon" href="/favicon.ico" />
         </Head>
     )

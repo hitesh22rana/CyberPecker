@@ -7,8 +7,8 @@ import Seo from '../components/Seo'
 
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
-function MyApp({ Component, pageProps }: AppProps) {
-    const isLoading: boolean = useInitialLoading()
+const App = ({ Component, pageProps }: AppProps) => {
+    const isLoading = useInitialLoading()
     const [queryClient] = useState(
         () =>
             new QueryClient({
@@ -20,15 +20,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             })
     )
 
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center w-screen h-screen">
-                <span className="loader" />
-            </div>
-        )
-    }
-
-    return (
+    return isLoading ? (
+        <div className="flex justify-center items-center w-screen h-screen">
+            <span className="loader" />
+        </div>
+    ) : (
         <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
                 <Seo />
@@ -38,4 +34,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 }
 
-export default MyApp
+export default App

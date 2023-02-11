@@ -6,9 +6,10 @@ function useHorizontalScroll() {
         const el = elRef.current
         if (el) {
             const onWheel = (e) => {
-                if (e.deltaY == 0) return
-                e.preventDefault()
-                el.scrollBy(e.deltaY, 0)
+                if (e.deltaY) {
+                    e.preventDefault()
+                    el.scrollBy(e.deltaY, 0)
+                }
             }
             el.addEventListener('wheel', onWheel)
             return () => el.removeEventListener('wheel', onWheel)

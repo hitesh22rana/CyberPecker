@@ -1,29 +1,25 @@
-import { NextRouter, useRouter } from 'next/router'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
+import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import ErrorPage from 'next/error'
-import NextNProgress from 'nextjs-progressbar'
-
-const Footer = dynamic(() => import('../components/Footer'))
-const ScrollToTop = dynamic(() => import('../components/ScrollToTop'))
 
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
+import Title from '../components/Seo/Title'
+
+const Footer = dynamic(() => import('../components/Footer'))
+const ScrollToTop = dynamic(() => import('../components/ScrollToTop'))
+const ErrorPage = dynamic(() => import('next/error'))
+const NextNProgress = dynamic(() => import('nextjs-progressbar'))
 
 import { dataUrls, fetchNews } from '../utils/requests'
 import { capitalize } from '../utils/helperFunctions'
-import Head from 'next/head'
 
 export async function getServerSideProps(context) {
     const { category } = context.query
+    const dataString = category ? `fetch${capitalize(category)}` : 'fetchBasic'
+    const dataUrl = dataUrls[dataString]?.url
 
-    const dataString = `fetch${capitalize(category)}`
-
-    let dataUrl = dataUrls[dataString]?.url
-
-    if (dataUrl === undefined && category === undefined) {
-        dataUrl = dataUrls?.fetchBasic?.url
-    } else if (dataUrl === undefined && category) {
+    if (!dataUrl) {
         return {
             props: {
                 results: null,
@@ -54,15 +50,7 @@ export default function Home(props): JSX.Element {
 
     return (
         <>
-            <Head>
-                {
-                    <title>
-                        {query?.category &&
-                            capitalize(query?.category.toString()) + ' | '}{' '}
-                        CyberPecker
-                    </title>
-                }
-            </Head>
+            <Title query={query} />
             <NextNProgress color="#f44d30" showOnShallow={true} height={4} />
             <Navbar />
             <Results data={data} />

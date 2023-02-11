@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { RiSuitcaseLine } from 'react-icons/ri'
 
-const Index = () => {
+export default function Index() {
     return (
         <div className="flex sm:flex-row items-center xl:justify-between mx-auto my-4 max-w-screen-xl flex-col justify-center">
             <Link href="/" className="cursor-pointer">
@@ -60,5 +60,3 @@ const Index = () => {
         </div>
     )
 }
-
-export default Index

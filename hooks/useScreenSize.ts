@@ -7,9 +7,11 @@ function useScreenSize() {
             const currentScroll = window.scrollY
             const scrollHeight = document.body.scrollHeight - window.innerHeight
 
-            if (scrollHeight) {
-                setSize(Number((currentScroll / scrollHeight).toFixed(2)) * 100)
-            }
+            setSize(
+                scrollHeight
+                    ? Number((currentScroll / scrollHeight).toFixed(2)) * 100
+                    : 0
+            )
         }
 
         window.addEventListener('scroll', updateSize)
