@@ -6,7 +6,7 @@ const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL
 export const dataUrls = {
     fetchBasic: {
         title: 'general',
-        url: `${API_URL}basic`,
+        url: `${API_URL}general`,
     },
     fetchDataBreach: {
         title: 'dataBreach',
