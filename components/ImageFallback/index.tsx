@@ -1,10 +1,5 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import {
-    extractDate,
-    isValidAuthorName,
-    removeSymbols,
-} from '../../utils/helperFunctions'
 
 const fallbackSrc = '/noImage.png'
 
@@ -24,10 +19,10 @@ export default function Index({ src, author, date, ...rest }): JSX.Element {
 
             <div className="transition-all duration-200 group-hover:flex absolute hidden flex-row justify-between w-full bottom-0 right-0 left-0 p-2 text-white gap-4">
                 <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis shadow">
-                    {isValidAuthorName(author) && removeSymbols(author)}
+                    {author !== 'N/A' && author}
                 </span>
                 <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
-                    {date !== 'N/A' && extractDate(date)}
+                    {date !== 'N/A' && date}
                 </span>
             </div>
         </div>
