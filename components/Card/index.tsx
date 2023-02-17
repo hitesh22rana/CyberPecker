@@ -40,7 +40,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             )}
             <div
                 ref={cardRef}
-                className={`p-2 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow border-2 border-[#212121] ${
+                className={`group p-2 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow border-2 border-[#212121] ${
                     isVisible ? 'opacity-100' : 'opacity-0'
                 } transition duration-[250ms] ease-in`}
                 onClick={() => setShowNewsModal(true)}
@@ -50,16 +50,18 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     fallbackSrc="/noImage.png"
                     width={1920}
                     height={1080}
-                    author={
-                        individualData.author
-                            ? individualData?.author
-                            : 'Unknown'
-                    }
+                    author={individualData.author}
                     date={individualData?.newsDate}
+                    suppressHydrationWarning={true}
+                    handleSpeak={null}
+                    isSpeaking={null}
+                    canSpeak={false}
+                    isPaused={true}
+                    link={null}
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
-                    className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform hover:scale-[1.1] hover:brightness-50"
+                    className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform group-hover:scale-[1.1] group-hover:brightness-50"
                 />
 
                 <div className="flex flex-col mt-1">

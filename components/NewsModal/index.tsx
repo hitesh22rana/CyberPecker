@@ -5,6 +5,7 @@ import axios from 'axios'
 import ImageFallback from '../ImageFallback'
 import { NewsData } from '../../utils/interfaces'
 import { dataUrls } from '../../utils/requests'
+import useTextToSpeech from '../../hooks/useTextTospeech'
 
 interface PropsData {
     individualData: NewsData
@@ -53,53 +54,63 @@ const Index = ({
         },
     })
 
+    const { speak, pause, resume, cancel, speaking, paused } = useTextToSpeech()
+
+    const handleSpeak = () => {
+        if (speaking) {
+            if (paused) {
+                resume()
+            } else {
+                pause()
+            }
+        } else {
+            speak(summary)
+        }
+    }
+
+    const handleClose = () => {
+        cancel()
+        onClose()
+    }
+
     return (
         <>
             <div
                 className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] w-screen h-full p-5 z-[100]"
-                onClick={onClose}
+                onClick={handleClose}
             ></div>
 
             <div
-                className="flex fixed flex-col items-center justify-center z-[999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto p-2 bg-[#1e1e1e] rounded shadow w-[95%] border-gradient"
+                className="flex fixed flex-col items-center justify-center z-[999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto px-[10px] pt-[10px] bg-[#1e1e1e] rounded shadow w-[95%] pb-3"
                 style={{
                     transform: 'scale(1)',
                     WebkitTransform: 'scale(1)',
                     msTransform: 'scale(1)',
                     OTransform: 'scale(1)',
-                    animation:
-                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
-                    WebkitAnimation:
-                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
-                    MozAnimation:
-                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
-                    OAnimation:
-                        'borderRotate 2500ms linear infinite, modalPopUp 0.3s',
+                    animation: 'modalPopUp 0.3s',
+                    WebkitAnimation: 'modalPopUp 0.3s',
+                    MozAnimation: 'modalPopUp 0.3s',
+                    OAnimation: 'modalPopUp 0.3s',
                 }}
             >
-                <a
-                    href={individualData?.newsURL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="cursor-pointer flex justify-center w-auto h-auto"
-                >
-                    <ImageFallback
-                        src={individualData?.newsImgURL}
-                        width={1920}
-                        height={1080}
-                        quality={100}
-                        author={
-                            individualData.author
-                                ? individualData?.author
-                                : 'Unknown'
-                        }
-                        date={individualData?.newsDate}
-                        loading="lazy"
-                        placeholder="blur"
-                        blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
-                        className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform hover:scale-[1.1] hover:brightness-50"
-                    />
-                </a>
+                <ImageFallback
+                    src={individualData?.newsImgURL}
+                    width={1920}
+                    height={1080}
+                    quality={100}
+                    author={individualData?.author}
+                    date={individualData?.newsDate}
+                    suppressHydrationWarning={true}
+                    handleSpeak={handleSpeak}
+                    isSpeaking={speaking}
+                    canSpeak={summary ? true : false}
+                    isPaused={paused}
+                    link={individualData?.newsURL}
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
+                    className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform hover:scale-[1.1] hover:brightness-50"
+                />
                 <div
                     className="flex flex-col mt-1 justify-start items-start w-full"
                     style={{
@@ -110,7 +121,7 @@ const Index = ({
                         {individualData?.headlines}
                     </h3>
 
-                    <p className="text-left md:font-normal font-light whitespace-normal md:text-xs text-[0.65em] leading-3 md:mt-3 mt-2 w-full">
+                    <p className="text-left md:font-normal font-light whitespace-normal md:text-[0.8em] md:leading-4 text-[0.65em] leading-3 md:mt-3 mt-2 w-full brightness-90">
                         {summary || (
                             <span className="flex justify-center items-center">
                                 <span className="loader" />

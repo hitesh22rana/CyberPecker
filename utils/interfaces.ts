@@ -11,3 +11,12 @@ export interface NewsData {
 export interface NewsDataArray {
     data: NewsData[]
 }
+
+export interface UseTextToSpeechReturn {
+    speak: (text: string) => void
+    pause: () => void
+    resume: () => void
+    cancel: () => void
+    speaking: boolean
+    paused: boolean
+}
