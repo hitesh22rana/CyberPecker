@@ -409,3 +409,15 @@ a {
         opacity: 0;
     }
 }
+
+@keyframes ping {
+    75%,
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.ping-animation {
+    animation: ping 0.8s cubic-bezier(0, 0, 0.2, 1);
+}

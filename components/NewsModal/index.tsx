@@ -1,4 +1,4 @@
-import { useState, SetStateAction, Dispatch } from 'react'
+import { useState, SetStateAction, Dispatch, useRef } from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 
@@ -56,7 +56,28 @@ const Index = ({
 
     const { speak, pause, resume, cancel, speaking, paused } = useTextToSpeech()
 
+    const handleSpeakButtonRef = useRef(null)
+
     const handleSpeak = () => {
+        if (handleSpeakButtonRef) {
+            if (handleSpeakButtonRef.current === null) {
+                handleSpeakButtonRef.current =
+                    document.getElementById('handleSpeak')
+            }
+
+            const handleSpeakButton = handleSpeakButtonRef.current
+
+            if (handleSpeakButton.classList.contains('ping-animation')) {
+                handleSpeakButton.classList.remove('ping-animation')
+
+                setTimeout(() => {
+                    handleSpeakButton.classList.add('ping-animation')
+                }, 100)
+            } else {
+                handleSpeakButton.classList.add('ping-animation')
+            }
+        }
+
         if (speaking) {
             if (paused) {
                 resume()
