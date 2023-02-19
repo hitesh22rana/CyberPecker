@@ -28,7 +28,7 @@ export default function Index({
                         rel="noreferrer"
                         className="cursor-pointer flex justify-center w-auto h-auto"
                     >
-                        <FiExternalLink className="transition-all brightness-90 absolute top-0 right-0 text-white text-2xl m-2 z-10 cursor-pointer hover:brightness-75" />
+                        <FiExternalLink className="transition-all brightness-90 absolute top-0 right-0 text-white sm:text-2xl text-lg sm:m-2 m-1 z-10 cursor-pointer hover:brightness-75" />
                     </a>
 
                     <div className="transition-all duration-200 flex absolute z-10 left-[45%] top-[45%] items-center justify-center">
@@ -37,14 +37,14 @@ export default function Index({
                                 className="bg-[rgba(0,0,0,0.4)] rounded-full"
                                 onClick={handleSpeak}
                             >
-                                <IoVolumeMute className="h-[68px] w-[68px] scale-x-110 py-2 pl-2 pr-1 cursor-pointer hover:brightness-90" />
+                                <IoVolumeMute className="sm:h-[68px] sm:w-[68px] h-12 w-[46px] sm:scale-x-110 scale-x-110 sm:py-2 sm:pl-2 sm:pr-1 py-1 pl-[6px] pr-1 cursor-pointer hover:brightness-90" />
                             </div>
                         ) : (
                             <div
                                 className="bg-[rgba(0,0,0,0.4)] rounded-full"
                                 onClick={handleSpeak}
                             >
-                                <IoVolumeHigh className="h-[68px] w-16 p-1 cursor-pointer ml-1 hover:brightness-90" />
+                                <IoVolumeHigh className="sm:h-[68px] sm:w-16 h-12 w-11 p-1 cursor-pointer sm:ml-1 ml-[2px] hover:brightness-90" />
                             </div>
                         )}
                     </div>

@@ -10,50 +10,57 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
     )
 
     useEffect(() => {
-        if (window.speechSynthesis) {
-            const u = new SpeechSynthesisUtterance()
-            u.lang = 'en-US'
-            u.rate = 1.1
-            u.pitch = 1.1
+        if (!window.speechSynthesis) return
 
-            u.onstart = () => {
-                setSpeaking(true)
-            }
+        const u = new SpeechSynthesisUtterance()
+        u.lang = 'en-US'
+        u.rate = 1.04
+        u.pitch = 1.1
 
-            u.onpause = () => {
-                setPaused(true)
-            }
+        u.onstart = () => setSpeaking(true)
+        u.onpause = () => setPaused(true)
+        u.onresume = () => setPaused(false)
+        u.onend = () => {
+            setSpeaking(false)
+            setPaused(false)
+        }
 
-            u.onresume = () => {
-                setPaused(false)
-            }
+        setUtterance(u)
 
-            u.onend = () => {
+        return () => {
+            if (utterance) {
+                window.speechSynthesis.cancel()
                 setSpeaking(false)
                 setPaused(false)
+                setUtterance(null)
+                setText('')
             }
-
-            setUtterance(u)
         }
-    }, [text])
+    }, [])
 
-    const speak = (text: string): void => {
+    useEffect(() => {
         if (utterance) {
-            setText(text)
+            setText('')
             utterance.text = text
             window.speechSynthesis.speak(utterance)
         }
+    }, [text, utterance])
+
+    const speak = (text: string): void => {
+        setText(text)
     }
 
     const pause = (): void => {
         if (utterance && speaking) {
             window.speechSynthesis.pause()
+            setPaused(true)
         }
     }
 
     const resume = (): void => {
         if (utterance && paused) {
             window.speechSynthesis.resume()
+            setPaused(false)
         }
     }
 
