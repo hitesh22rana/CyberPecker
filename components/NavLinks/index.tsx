@@ -20,8 +20,9 @@ export default function Index() {
         ) {
             return
         }
-        title !== queryCategory &&
-            router.push(title !== 'general' ? `/?category=${title}` : '/')
+
+        const url = title === 'general' ? '/' : `/?category=${title}`
+        router.push(url)
     }
 
     return (
@@ -36,21 +37,20 @@ export default function Index() {
                             <h2
                                 key={title}
                                 onClick={() => handleCategory(title)}
-                                className={`sm:last:pr-10 cursor-pointer transition-all duration-200 transform hover:brightness-75 hover:scale-105 select-none ${
+                                className={`transition-all duration-200 transform select-none font-semibold ${
                                     title === queryCategory ||
                                     (title === 'general' && !queryCategory)
                                         ? 'text-[#f44d30]'
-                                        : 'text-[#d1d5db]'
+                                        : 'text-[#d1d5db] cursor-pointer hover:brightness-75 hover:scale-105 before:content-[""] before:absolute before:w-0 before:h-0.5 before:bottom-[-3px] before:-translate-x-2/4 before:translate-y-[0%] before:bg-[#f44d30] before:origin-center before:invisible before:transition-all before:duration-[0.3s] before:ease-[ease-in-out] before:left-2/4 hover:before:visible hover:before:w-full'
                                 }`}
                             >
-                                {capitalize(title === '' ? 'General' : title)}
+                                {capitalize(title || 'General')}
                             </h2>
                         )
                 )}
             </div>
 
-            <div className="absolute top-0 left-0 bg-[#171717] h-full w-[2%] 4xl:hidden"></div>
-            <div className="absolute top-0 right-0 bg-gradient-to-l from-[#171717] h-full w-1/12 4xl:hidden"></div>
+            <div className="absolute top-0 right-0 shadow bg-gradient-to-l from-[#171717] h-full w-[5%] 4xl:hidden" />
         </div>
     )
 }

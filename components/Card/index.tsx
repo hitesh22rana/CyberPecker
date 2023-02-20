@@ -40,9 +40,12 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             )}
             <div
                 ref={cardRef}
-                className={`group p-2 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow border-2 border-[#212121] ${
+                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 3xl:w-[500px] bg-[#1e1e1e] rounded shadow border-2 border-[#212121] ${
                     isVisible ? 'opacity-100' : 'opacity-0'
                 } transition duration-[250ms] ease-in`}
+                style={{
+                    backgroundImage: "url('/noise.png')",
+                }}
                 onClick={() => setShowNewsModal(true)}
             >
                 <ImageFallback
@@ -64,12 +67,12 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform group-hover:scale-[1.1] group-hover:brightness-50"
                 />
 
-                <div className="flex flex-col mt-1">
-                    <h3 className="font-medium whitespace-nowrap overflow-hidden text-ellipsis md:text-base text-sm">
+                <div className="flex flex-col mt-1 p-1">
+                    <span className="font-semibold line-clamp-1 md:text-base text-sm">
                         {individualData?.headlines}
-                    </h3>
+                    </span>
 
-                    <p className="font-normal md:text-[0.85em] text-xs md:mt-4 mt-2 sm:line-clamp-4 line-clamp-3">
+                    <p className="font-medium md:text-[0.85em] brightness-95 text-xs md:mt-4 mt-2 sm:line-clamp-4 line-clamp-3">
                         {individualData?.fullNews.trim()}
                     </p>
                 </div>

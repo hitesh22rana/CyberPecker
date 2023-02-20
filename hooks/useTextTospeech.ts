@@ -12,8 +12,16 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
     useEffect(() => {
         if (!window.speechSynthesis) return
 
+        const voices = window.speechSynthesis.getVoices()
+        const voice = voices.find(
+            (v) => v.name === 'Microsoft David - English (United States)'
+        )
+
         const u = new SpeechSynthesisUtterance()
         u.lang = 'en-US'
+
+        voice && (u.voice = voice)
+
         u.rate = 1.04
         u.pitch = 1.1
 

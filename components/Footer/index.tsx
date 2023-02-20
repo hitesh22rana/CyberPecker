@@ -6,7 +6,7 @@ import { RiSuitcaseLine } from 'react-icons/ri'
 
 export default function Index() {
     return (
-        <div className="flex sm:flex-row items-center xl:justify-between mx-auto my-4 max-w-screen-xl flex-col justify-center">
+        <div className="flex sm:flex-row xl:items-end items-center xl:justify-between mx-auto my-4 max-w-screen-xl flex-col justify-center">
             <Link href="/" className="cursor-pointer">
                 <div className="flex flex-col gap-2 mx-4">
                     <Image
@@ -26,6 +26,7 @@ export default function Index() {
                     </div>
                 </div>
             </Link>
+
             <div className="flex flex-col gap-2 mx-4 my-4 sm:my-0">
                 <h3 className="sm:text-base text-sm">Reach me out!</h3>
                 <div className="flex flex-row items-center justify-center gap-4">

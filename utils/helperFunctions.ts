@@ -5,3 +5,10 @@ export function capitalize(str: string): string {
 export function handleScrollToTop() {
     window.scroll(0, 0)
 }
+
+const REGEX1 = /\.+\s*/g
+const REGEX2 = /\.+/g
+
+export function textFilter(text: string): string {
+    return text.trim().replace(REGEX1, '.').replace(REGEX2, '.')
+}
