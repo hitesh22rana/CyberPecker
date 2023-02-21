@@ -8,6 +8,7 @@ module.exports = {
       screens: {
         "3xl": "2000px",
         "4xl": "2410px",
+        "max-screen": "2200px",
       },
     },
   },
