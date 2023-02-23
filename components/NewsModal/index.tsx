@@ -7,7 +7,11 @@ import useTextToSpeech from '../../hooks/useTextTospeech'
 
 import { NewsData } from '../../utils/interfaces'
 import { dataUrls } from '../../utils/requests'
-import { textFilter } from '../../utils/helperFunctions'
+import {
+    getCurrentWord,
+    removeNonAlphanumeric,
+    textFilter,
+} from '../../utils/helperFunctions'
 
 interface PropsData {
     individualData: NewsData
@@ -56,28 +60,28 @@ const Index = ({
         },
     })
 
-    const { speak, pause, resume, cancel, speaking, paused } = useTextToSpeech()
+    const { speak, pause, resume, cancel, speaking, paused, currentWordIndex } =
+        useTextToSpeech()
 
     const handleSpeakButtonRef = useRef(null)
 
-    const handleSpeak = () => {
-        if (handleSpeakButtonRef) {
-            if (handleSpeakButtonRef.current === null) {
-                handleSpeakButtonRef.current =
-                    document.getElementById('handleSpeak')
-            }
+    const toggleAnimation = () => {
+        const handleSpeakButton = handleSpeakButtonRef.current
 
-            const handleSpeakButton = handleSpeakButtonRef.current
-
-            if (handleSpeakButton.classList.contains('ping-animation')) {
-                handleSpeakButton.classList.remove('ping-animation')
-
-                setTimeout(() => {
-                    handleSpeakButton.classList.add('ping-animation')
-                }, 100)
-            } else {
+        if (handleSpeakButton.classList.contains('ping-animation')) {
+            handleSpeakButton.classList.remove('ping-animation')
+            setTimeout(() => {
                 handleSpeakButton.classList.add('ping-animation')
-            }
+            }, 100)
+        } else {
+            handleSpeakButton.classList.add('ping-animation')
+        }
+    }
+
+    const handleSpeak = () => {
+        if (handleSpeakButtonRef.current === null) {
+            handleSpeakButtonRef.current =
+                document.getElementById('handleSpeak')
         }
 
         if (speaking) {
@@ -89,12 +93,18 @@ const Index = ({
         } else {
             speak(summary)
         }
+
+        toggleAnimation()
     }
 
     const handleClose = () => {
         cancel()
         onClose()
     }
+
+    const currentWord =
+        summary &&
+        removeNonAlphanumeric(getCurrentWord(summary, currentWordIndex))
 
     return (
         <>
@@ -117,6 +127,14 @@ const Index = ({
                     backgroundImage: "url('/noise.png')",
                 }}
             >
+                {speaking && !paused && (
+                    <div className="absolute -top-10">
+                        <p className="font-semibold text-lg text-fade-animation">
+                            {currentWord}
+                        </p>
+                    </div>
+                )}
+
                 <ImageFallback
                     src={individualData?.newsImgURL}
                     width={1920}

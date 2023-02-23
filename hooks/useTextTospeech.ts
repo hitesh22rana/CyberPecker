@@ -5,6 +5,7 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
     const [text, setText] = useState<string>('')
     const [speaking, setSpeaking] = useState<boolean>(false)
     const [paused, setPaused] = useState<boolean>(false)
+    const [currentWordIndex, setCurrentWordIndex] = useState<number>(0)
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(
         null
     )
@@ -20,7 +21,9 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
         const u = new SpeechSynthesisUtterance()
         u.lang = 'en-US'
 
-        voice && (u.voice = voice)
+        if (voice) {
+            u.voice = voice
+        }
 
         u.rate = 1.04
         u.pitch = 1.1
@@ -28,9 +31,13 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
         u.onstart = () => setSpeaking(true)
         u.onpause = () => setPaused(true)
         u.onresume = () => setPaused(false)
+        u.onboundary = (event) => {
+            setCurrentWordIndex(event.charIndex)
+        }
         u.onend = () => {
             setSpeaking(false)
             setPaused(false)
+            setCurrentWordIndex(0)
         }
 
         setUtterance(u)
@@ -42,6 +49,7 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
                 setPaused(false)
                 setUtterance(null)
                 setText('')
+                setCurrentWordIndex(0)
             }
         }
     }, [])
@@ -82,7 +90,7 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
         }
     }
 
-    return { speak, pause, resume, cancel, speaking, paused }
+    return { speak, pause, resume, cancel, speaking, paused, currentWordIndex }
 }
 
 export default useTextToSpeech

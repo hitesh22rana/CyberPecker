@@ -12,3 +12,15 @@ const REGEX2 = /\.+/g
 export function textFilter(text: string): string {
     return text.trim().replace(REGEX1, '.').replace(REGEX2, '.')
 }
+
+export function removeNonAlphanumeric(input: string): string {
+    return input.replace(/[^a-zA-Z0-9]/g, '')
+}
+
+export function getCurrentWord(text: string, startIndex: number): string {
+    let endIndex = startIndex
+    while (endIndex < text.length && !/\s/.test(text[endIndex])) {
+        endIndex++
+    }
+    return text.substring(startIndex, endIndex)
+}

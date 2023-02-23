@@ -19,4 +19,5 @@ export interface UseTextToSpeechReturn {
     cancel: () => void
     speaking: boolean
     paused: boolean
+    currentWordIndex: number
 }
