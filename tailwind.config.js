@@ -1,16 +1,19 @@
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      screens: {
-        "3xl": "2000px",
-        "4xl": "2410px",
-        "max-screen": "2200px",
-      },
+    content: [
+        './pages/**/*.{js,ts,jsx,tsx}',
+        './components/**/*.{js,ts,jsx,tsx}',
+    ],
+    theme: {
+        extend: {
+            screens: {
+                '3xl': '2000px',
+                '4xl': '2410px',
+                'max-screen': '2200px',
+            },
+        },
     },
-  },
-  plugins: [require('tailwind-scrollbar-hide'), require('@tailwindcss/line-clamp')],
+    plugins: [
+        require('tailwind-scrollbar-hide'),
+        require('@tailwindcss/line-clamp'),
+    ],
 }

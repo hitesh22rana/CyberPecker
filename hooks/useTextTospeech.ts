@@ -1,25 +1,32 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { UseTextToSpeechReturn } from '../utils/interfaces'
 
 const useTextToSpeech = (): UseTextToSpeechReturn => {
     const [text, setText] = useState<string>('')
     const [speaking, setSpeaking] = useState<boolean>(false)
     const [paused, setPaused] = useState<boolean>(false)
-    const [currentWordIndex, setCurrentWordIndex] = useState<number>(0)
+    const [currentWord, setCurrentWord] = useState<string>(null)
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(
         null
     )
 
+    const index = useRef(0)
+    const words = useRef([])
+
+    const selectedVoice = useMemo(() => {
+        if (!window.speechSynthesis) return null
+        const voices = window.speechSynthesis.getVoices()
+        return voices.find(
+            (v) => v.name === 'Microsoft David - English (United States)'
+        )
+    }, [])
+
     useEffect(() => {
         if (!window.speechSynthesis) return
 
-        const voices = window.speechSynthesis.getVoices()
-        const voice = voices.find(
-            (v) => v.name === 'Microsoft David - English (United States)'
-        )
-
         const u = new SpeechSynthesisUtterance()
         u.lang = 'en-US'
+        const voice = selectedVoice
 
         if (voice) {
             u.voice = voice
@@ -28,16 +35,23 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
         u.rate = 1.04
         u.pitch = 1.1
 
-        u.onstart = () => setSpeaking(true)
+        u.onstart = () => {
+            setSpeaking(true)
+            index.current = 0
+        }
         u.onpause = () => setPaused(true)
         u.onresume = () => setPaused(false)
-        u.onboundary = (event) => {
-            setCurrentWordIndex(event.charIndex)
+        u.onboundary = () => {
+            setTimeout(() => {
+                setCurrentWord(words.current[index.current])
+                index.current += 1
+            }, 200)
         }
         u.onend = () => {
             setSpeaking(false)
             setPaused(false)
-            setCurrentWordIndex(0)
+            setCurrentWord(null)
+            index.current = 0
         }
 
         setUtterance(u)
@@ -49,10 +63,10 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
                 setPaused(false)
                 setUtterance(null)
                 setText('')
-                setCurrentWordIndex(0)
+                words.current = []
             }
         }
-    }, [])
+    }, [selectedVoice])
 
     useEffect(() => {
         if (utterance) {
@@ -62,35 +76,38 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
         }
     }, [text, utterance])
 
-    const speak = (text: string): void => {
+    const speak = useCallback((text: string): void => {
+        words.current = text.split(' ')
         setText(text)
-    }
+    }, [])
 
-    const pause = (): void => {
+    const pause = useCallback((): void => {
         if (utterance && speaking) {
-            window.speechSynthesis.pause()
             setPaused(true)
+            window.speechSynthesis.pause()
         }
-    }
+    }, [utterance, speaking])
 
-    const resume = (): void => {
+    const resume = useCallback((): void => {
         if (utterance && paused) {
-            window.speechSynthesis.resume()
             setPaused(false)
+            window.speechSynthesis.resume()
         }
-    }
+    }, [utterance, paused])
 
-    const cancel = (): void => {
+    const cancel = useCallback((): void => {
         if (utterance) {
+            setUtterance(null)
             window.speechSynthesis.cancel()
             setSpeaking(false)
             setPaused(false)
-            setUtterance(null)
             setText('')
+            words.current = []
+            index.current = 0
         }
-    }
+    }, [utterance])
 
-    return { speak, pause, resume, cancel, speaking, paused, currentWordIndex }
+    return { speak, pause, resume, cancel, speaking, paused, currentWord }
 }
 
 export default useTextToSpeech

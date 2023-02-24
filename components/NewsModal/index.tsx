@@ -7,11 +7,7 @@ import useTextToSpeech from '../../hooks/useTextTospeech'
 
 import { NewsData } from '../../utils/interfaces'
 import { dataUrls } from '../../utils/requests'
-import {
-    getCurrentWord,
-    removeNonAlphanumeric,
-    textFilter,
-} from '../../utils/helperFunctions'
+import { removeNonAlphanumeric, textFilter } from '../../utils/helperFunctions'
 
 interface PropsData {
     individualData: NewsData
@@ -34,7 +30,7 @@ const Index = ({
             const response = await axios.post(
                 postSummaryUrl,
                 {
-                    data: fullNews?.trim(),
+                    data: fullNews,
                 },
                 {
                     headers: {
@@ -60,7 +56,7 @@ const Index = ({
         },
     })
 
-    const { speak, pause, resume, cancel, speaking, paused, currentWordIndex } =
+    const { speak, pause, resume, cancel, speaking, paused, currentWord } =
         useTextToSpeech()
 
     const handleSpeakButtonRef = useRef(null)
@@ -102,9 +98,7 @@ const Index = ({
         onClose()
     }
 
-    const currentWord =
-        summary &&
-        removeNonAlphanumeric(getCurrentWord(summary, currentWordIndex))
+    const word: string = summary && removeNonAlphanumeric(currentWord)
 
     return (
         <>
@@ -127,10 +121,10 @@ const Index = ({
                     backgroundImage: "url('/noise.png')",
                 }}
             >
-                {speaking && !paused && (
+                {word && speaking && !paused && (
                     <div className="absolute -top-10">
                         <p className="font-semibold text-lg text-fade-animation">
-                            {currentWord}
+                            {word}
                         </p>
                     </div>
                 )}

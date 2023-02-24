@@ -14,13 +14,5 @@ export function textFilter(text: string): string {
 }
 
 export function removeNonAlphanumeric(input: string): string {
-    return input.replace(/[^a-zA-Z0-9]/g, '')
-}
-
-export function getCurrentWord(text: string, startIndex: number): string {
-    let endIndex = startIndex
-    while (endIndex < text.length && !/\s/.test(text[endIndex])) {
-        endIndex++
-    }
-    return text.substring(startIndex, endIndex)
+    return input && input.replace(/[^a-zA-Z0-9-]/g, '')
 }
