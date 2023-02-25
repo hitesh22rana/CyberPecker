@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import { Analytics } from '@vercel/analytics/react'
 import { useState } from 'react'
 import '../styles/globals.css'
 import useInitialLoading from '../hooks/useInitialLoading'
@@ -29,6 +30,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Hydrate state={pageProps.dehydratedState}>
                 <Seo />
                 <Component {...pageProps} />
+                <Analytics />
             </Hydrate>
         </QueryClientProvider>
     )
