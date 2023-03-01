@@ -82,3 +82,26 @@ export const fetchNews = async (dataUrl: string) => {
         throw error
     }
 }
+
+export const postSummary = async (data: string) => {
+    const postSummaryUrl = dataUrls.postSummary.url
+
+    try {
+        const response = await axios.post(
+            postSummaryUrl,
+            {
+                data,
+            },
+            {
+                headers: {
+                    accept: 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+
+        return response
+    } catch (error) {
+        throw error
+    }
+}

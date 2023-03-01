@@ -42,10 +42,8 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
         u.onpause = () => setPaused(true)
         u.onresume = () => setPaused(false)
         u.onboundary = () => {
-            setTimeout(() => {
-                setCurrentWord(words.current[index.current])
-                index.current += 1
-            }, 200)
+            setCurrentWord(words.current[index.current])
+            index.current += 1
         }
         u.onend = () => {
             setSpeaking(false)

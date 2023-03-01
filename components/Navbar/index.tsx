@@ -1,8 +1,9 @@
+import { memo } from 'react'
 import Image from 'next/image'
 import useScreenSize from '../../hooks/useScreenSize'
 import NavLinks from '../NavLinks'
 
-const Index = () => {
+const Index = memo(function Index() {
     const progressCompletion: number = useScreenSize()
 
     return (
@@ -26,6 +27,6 @@ const Index = () => {
             <NavLinks />
         </nav>
     )
-}
+})
 
 export default Index

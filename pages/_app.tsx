@@ -27,7 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </div>
     ) : (
         <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
+            <Hydrate state={pageProps['dehydratedState']}>
                 <Seo />
                 <Component {...pageProps} />
                 <Analytics />

@@ -1,12 +1,11 @@
 import { useState, SetStateAction, Dispatch, useRef } from 'react'
 import { useQuery } from 'react-query'
-import axios from 'axios'
 
 import ImageFallback from '../ImageFallback'
 import useTextToSpeech from '../../hooks/useTextTospeech'
 
 import { NewsData } from '../../utils/interfaces'
-import { dataUrls } from '../../utils/requests'
+import { postSummary } from '../../utils/requests'
 import { removeNonAlphanumeric, textFilter } from '../../utils/helperFunctions'
 
 interface PropsData {
@@ -21,32 +20,10 @@ const Index = ({
     const [summary, setSummary] = useState<string | null>(null)
 
     const { fullNews } = individualData || {}
-    const { url: postSummaryUrl } = dataUrls?.postSummary || {}
 
     const onClose = () => setShowNewsModal(false)
 
-    const getSummary = async () => {
-        try {
-            const response = await axios.post(
-                postSummaryUrl,
-                {
-                    data: fullNews,
-                },
-                {
-                    headers: {
-                        accept: 'application/json;charset=UTF-8',
-                        'Content-Type': 'application/json',
-                    },
-                }
-            )
-
-            return response
-        } catch (error) {
-            throw error
-        }
-    }
-
-    useQuery(String(individualData?.id), getSummary, {
+    useQuery(String(individualData?.id), () => postSummary(fullNews), {
         onSuccess: ({ data }) => {
             const summarizedData: string = textFilter(data?.summary)
             setSummary(summarizedData)

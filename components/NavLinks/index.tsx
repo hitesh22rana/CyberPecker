@@ -1,3 +1,4 @@
+import { useCallback, memo } from 'react'
 import { NextRouter, useRouter } from 'next/router'
 import useHorizontalScroll from '../../hooks/useHorizontalScroll'
 
@@ -6,24 +7,27 @@ import { dataUrls } from '../../utils/requests'
 
 const categoryTitles = Object.entries(dataUrls).map(([, { title }]) => title)
 
-export default function Index() {
+const Index = memo(function Index() {
     const router: NextRouter = useRouter()
     const query = router.query
     const queryCategory = query?.category?.toString()
 
     const scrollRef = useHorizontalScroll()
 
-    function handleCategory(title: string): void {
-        if (
-            title === queryCategory ||
-            (title === 'general' && !queryCategory)
-        ) {
-            return
-        }
+    const handleCategory = useCallback(
+        (title: string, queryCategory: string): void => {
+            if (
+                title === queryCategory ||
+                (title === 'general' && !queryCategory)
+            ) {
+                return
+            }
 
-        const url = title === 'general' ? '/' : `/?category=${title}`
-        router.push(url)
-    }
+            const url = title === 'general' ? '/' : `/?category=${title}`
+            router.push(url)
+        },
+        []
+    )
 
     return (
         <div className="relative w-full flex items-center justify-center">
@@ -36,7 +40,9 @@ export default function Index() {
                         title !== 'summarize' && (
                             <h2
                                 key={title}
-                                onClick={() => handleCategory(title)}
+                                onClick={() =>
+                                    handleCategory(title, queryCategory)
+                                }
                                 className={`transition-all duration-200 transform select-none font-semibold ${
                                     title === queryCategory ||
                                     (title === 'general' && !queryCategory)
@@ -53,4 +59,6 @@ export default function Index() {
             <div className="absolute top-0 right-0 shadow bg-gradient-to-l from-[#171717] h-full w-[5%] 4xl:hidden" />
         </div>
     )
-}
+})
+
+export default Index

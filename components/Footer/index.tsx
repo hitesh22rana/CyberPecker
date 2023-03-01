@@ -1,10 +1,11 @@
+import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { RiSuitcaseLine } from 'react-icons/ri'
 
-export default function Index() {
+const Index = memo(function Index() {
     return (
         <div className="flex sm:flex-row xl:items-end items-center xl:justify-between mx-auto my-4 max-w-screen-xl flex-col justify-center">
             <Link href="/" className="cursor-pointer">
@@ -60,4 +61,6 @@ export default function Index() {
             </div>
         </div>
     )
-}
+})
+
+export default Index

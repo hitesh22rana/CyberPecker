@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import { memo } from 'react'
 
-export default function Index() {
+const Index = memo(function Index() {
     return (
         <Head>
             <title>CyberPecker</title>
@@ -60,4 +61,6 @@ export default function Index() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
     )
-}
+})
+
+export default Index

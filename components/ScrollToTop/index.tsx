@@ -1,9 +1,10 @@
+import { memo } from 'react'
 import Image from 'next/image'
 import useScreenSize from '../../hooks/useScreenSize'
 import useWindowSize from '../../hooks/useWindowSize'
 import { handleScrollToTop } from '../../utils/helperFunctions'
 
-export default function Index() {
+const Index = memo(function Index() {
     const currentHeight: number = useWindowSize()
     const progressCompletion: number = useScreenSize()
     const degrees: number = progressCompletion * 3.6
@@ -30,4 +31,6 @@ export default function Index() {
             />
         </button>
     ) : null
-}
+})
+
+export default Index
