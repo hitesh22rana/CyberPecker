@@ -2,6 +2,8 @@ import { dehydrate, QueryClient, useQuery } from 'react-query'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
+import LRU from 'lru-cache'
+
 import Navbar from '../components/Navbar'
 import Results from '../components/Results'
 import Title from '../components/Seo/Title'
@@ -13,6 +15,13 @@ const NextNProgress = dynamic(() => import('nextjs-progressbar'))
 
 import { dataUrls, fetchNews } from '../utils/requests'
 import { capitalize } from '../utils/helperFunctions'
+
+const cacheTime = 1000 * 60 * 15
+
+const ssrCache = new LRU({
+    max: 100,
+    maxAge: cacheTime,
+})
 
 export async function getServerSideProps(context) {
     const { category } = context.query
@@ -27,8 +36,23 @@ export async function getServerSideProps(context) {
         }
     }
 
+    const cached = ssrCache.get(dataUrl)
+
+    if (cached) {
+        return {
+            props: {
+                dehydratedState: cached,
+            },
+        }
+    }
+
     const queryClient = new QueryClient()
-    await queryClient.prefetchQuery(dataUrl, () => fetchNews(dataUrl))
+
+    await queryClient.prefetchQuery(dataUrl, () => fetchNews(dataUrl), {
+        cacheTime,
+    })
+
+    ssrCache.set(dataUrl, dehydrate(queryClient))
 
     return {
         props: {
@@ -42,7 +66,9 @@ export default function Home(props): JSX.Element {
     const queryKey: string = props?.dehydratedState?.queries[0]?.queryKey
     const query = router?.query
 
-    const { data, isError } = useQuery(queryKey, () => fetchNews(queryKey))
+    const { data, isError } = useQuery(queryKey, () => fetchNews(queryKey), {
+        staleTime: cacheTime,
+    })
 
     if (!data || isError) {
         return <ErrorPage statusCode={404} />

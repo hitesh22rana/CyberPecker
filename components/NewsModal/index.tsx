@@ -24,6 +24,7 @@ const Index = ({
     const onClose = () => setShowNewsModal(false)
 
     useQuery(String(individualData?.id), () => postSummary(fullNews), {
+        cacheTime: 1000 * 60 * 15,
         onSuccess: ({ data }) => {
             const summarizedData: string = textFilter(data?.summary)
             setSummary(summarizedData)
