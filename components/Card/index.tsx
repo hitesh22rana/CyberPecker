@@ -50,7 +50,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             >
                 <ImageFallback
                     src={individualData?.newsImgURL}
-                    fallbackSrc="/noImage.png"
+                    fallbacksrc="/noImage.png"
                     width={1920}
                     height={1080}
                     author={individualData.author}

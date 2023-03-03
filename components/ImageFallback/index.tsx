@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import { FiExternalLink } from 'react-icons/fi'
 
-const fallbackSrc = '/noImage.png'
+const fallbacksrc = '/noImage.png'
 
 export default function Index({
     src,
@@ -53,7 +53,7 @@ export default function Index({
                 {...rest}
                 src={imgSrc}
                 onError={() => {
-                    setImgSrc(fallbackSrc)
+                    setImgSrc(fallbacksrc)
                 }}
                 alt="news-img"
             />

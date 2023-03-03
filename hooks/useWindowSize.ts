@@ -1,16 +1,33 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 function useWindowSize() {
     const [size, setSize] = useState<number>(0)
-    useLayoutEffect(() => {
-        function updateSize() {
-            setSize(window.scrollY)
+
+    const handleScroll = useCallback(() => {
+        setSize(window.scrollY)
+    }, [])
+
+    useEffect(() => {
+        let requestId: number
+
+        function handleScrollDebounced() {
+            if (requestId) {
+                cancelAnimationFrame(requestId)
+            }
+            requestId = requestAnimationFrame(() => {
+                handleScroll()
+            })
         }
 
-        window.addEventListener('scroll', updateSize)
-        updateSize()
-        return () => window.removeEventListener('scroll', updateSize)
-    }, [])
+        window.addEventListener('scroll', handleScrollDebounced)
+        handleScrollDebounced()
+
+        return () => {
+            window.removeEventListener('scroll', handleScrollDebounced)
+            cancelAnimationFrame(requestId)
+        }
+    }, [handleScroll])
+
     return size
 }
 
