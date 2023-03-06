@@ -26,7 +26,9 @@ function useScreenSize() {
             })
         }
 
-        window.addEventListener('scroll', handleScrollDebounced)
+        window.addEventListener('scroll', handleScrollDebounced, {
+            passive: true,
+        })
         handleScrollDebounced()
 
         return () => {

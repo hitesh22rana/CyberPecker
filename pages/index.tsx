@@ -25,7 +25,9 @@ const ssrCache = new LRU({
 
 export async function getServerSideProps(context) {
     const { category } = context.query
-    const dataString = category ? `fetch${capitalize(category)}` : 'fetchBasic'
+    const dataString = category
+        ? `fetch${capitalize(category)}`
+        : 'fetchGeneral'
     const dataUrl = dataUrls[dataString]?.url
 
     if (!dataUrl) {

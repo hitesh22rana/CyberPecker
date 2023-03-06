@@ -13,8 +13,13 @@ function useHorizontalScroll() {
     useEffect(() => {
         const el = elRef.current
         if (el) {
-            el.addEventListener('wheel', (e) => onWheel(e, el))
-            return () => el.removeEventListener('wheel', (e) => onWheel(e, el))
+            el.addEventListener('wheel', (e) => onWheel(e, el), {
+                passive: true,
+            })
+            return () =>
+                el.removeEventListener('wheel', (e) => onWheel(e, el), {
+                    passive: true,
+                })
         }
     }, [elRef, onWheel])
 
