@@ -1,14 +1,23 @@
 import Head from 'next/head'
 import { memo } from 'react'
+import { capitalize } from '../../utils/helperFunctions'
 
-const Index = memo(function Index() {
+const Index = memo(function Index({
+    category,
+}: {
+    category: string | string[] | undefined
+}): JSX.Element {
     return (
         <Head>
-            <title>CyberPecker</title>
-            <title>CyberPecker - The latest Cyber Security Updates</title>
+            {
+                <title>
+                    {category && capitalize(category.toString()) + ' | '}{' '}
+                    CyberPecker
+                </title>
+            }
             <meta
                 name="description"
-                content="Get the latest Cyber Security updates curated from various sources under one roof. Stay informed with CyberPecker."
+                content="Get the Latest Scoop on Cyberspace with CyberPecker."
             />
             <meta
                 name="keywords"
@@ -24,11 +33,11 @@ const Index = memo(function Index() {
             {/* <-- Open Graph meta tags for social media sharing --> */}
             <meta
                 property="og:title"
-                content="CyberPecker - The latest Cyber Security Updates"
+                content="CyberPecker - The Ultimate News Aggregator for Tech Enthusiasts."
             />
             <meta
                 property="og:description"
-                content="Get the latest Cyber Security updates curated from various sources under one roof. Stay informed with CyberPecker."
+                content="Get the Latest Scoop on Cyberspace with CyberPecker."
             />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://cyberpecker.vercel.app/" />
@@ -41,11 +50,11 @@ const Index = memo(function Index() {
             <meta name="twitter:card" content="summary_large_image" />
             <meta
                 name="twitter:title"
-                content="CyberPecker - The latest Cyber Security Updates"
+                content="CyberPecker - The Ultimate News Aggregator for Tech Enthusiasts."
             />
             <meta
                 name="twitter:description"
-                content="Get the latest Cyber Security updates curated from various sources under one roof. Stay informed with CyberPecker."
+                content="Get the Latest Scoop on Cyberspace with CyberPecker."
             />
             <meta
                 name="twitter:image"

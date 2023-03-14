@@ -1,7 +1,12 @@
 import axios from 'axios'
+import { capitalize } from './helperFunctions'
 
 const API_URL = process.env.API_URL
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL
+const headers = {
+    accept: 'application/json;charset=UTF-8',
+    'Content-Type': 'application/json',
+}
 
 export const dataUrls = {
     fetchGeneral: {
@@ -71,10 +76,6 @@ export const dataUrls = {
 }
 
 export const fetchNews = async (dataUrl: string) => {
-    const headers = {
-        accept: 'application/json;charset=UTF-8',
-        'Content-Type': 'application/json',
-    }
     try {
         const response = await axios.get(dataUrl, { headers })
         return response?.data
@@ -93,10 +94,7 @@ export const postSummary = async (data: string) => {
                 data,
             },
             {
-                headers: {
-                    accept: 'application/json;charset=UTF-8',
-                    'Content-Type': 'application/json',
-                },
+                headers,
             }
         )
 
@@ -104,4 +102,11 @@ export const postSummary = async (data: string) => {
     } catch (error) {
         throw error
     }
+}
+
+export function getDataUrl(category: string): string | null {
+    const dataString = category
+        ? `fetch${capitalize(category)}`
+        : 'fetchGeneral'
+    return dataUrls[dataString]?.url
 }

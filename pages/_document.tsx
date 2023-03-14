@@ -7,17 +7,32 @@ export default class CustomDocument extends Document {
                 <Head>
                     <link
                         rel="preconnect"
-                        href="https://fonts.googleapis.com"
-                    />
-                    <link
-                        rel="preconnect"
                         href="https://fonts.gstatic.com"
                         crossOrigin="true"
                     />
                     <link
+                        rel="preload"
+                        as="style"
                         href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
-                        rel="stylesheet"
                     />
+                    <link
+                        rel="stylesheet"
+                        media="print"
+                        onLoad={() => {
+                            const link = document.createElement('link')
+                            link.href =
+                                'https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap'
+                            link.rel = 'stylesheet'
+                            document.head.appendChild(link)
+                        }}
+                        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
+                    />
+                    <noscript>
+                        <link
+                            rel="stylesheet"
+                            href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
+                        />
+                    </noscript>
                 </Head>
                 <body>
                     <Main />

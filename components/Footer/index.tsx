@@ -11,7 +11,7 @@ const Index = memo(function Index() {
             <Link href="/" className="cursor-pointer">
                 <div className="flex flex-col gap-2 mx-4">
                     <Image
-                        src="/logo.png"
+                        src="/logo.gif"
                         height={50}
                         width={50}
                         alt="logo"

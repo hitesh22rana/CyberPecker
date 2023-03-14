@@ -1,20 +1,15 @@
+import { Fragment } from 'react'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
 import LRU from 'lru-cache'
 
-import Navbar from '../components/Navbar'
-import Results from '../components/Results'
-import Title from '../components/Seo/Title'
-
-const Footer = dynamic(() => import('../components/Footer'))
-const ScrollToTop = dynamic(() => import('../components/ScrollToTop'))
+const Results = dynamic(() => import('../components/Results'))
+const Seo = dynamic(() => import('../components/Seo'))
 const ErrorPage = dynamic(() => import('next/error'))
-const NextNProgress = dynamic(() => import('nextjs-progressbar'))
 
-import { dataUrls, fetchNews } from '../utils/requests'
-import { capitalize } from '../utils/helperFunctions'
+import { fetchNews, getDataUrl } from '../utils/requests'
 
 const cacheTime = 1000 * 60 * 15
 
@@ -25,10 +20,8 @@ const ssrCache = new LRU({
 
 export async function getServerSideProps(context) {
     const { category } = context.query
-    const dataString = category
-        ? `fetch${capitalize(category)}`
-        : 'fetchGeneral'
-    const dataUrl = dataUrls[dataString]?.url
+
+    const dataUrl = getDataUrl(category)
 
     if (!dataUrl) {
         return {
@@ -66,7 +59,7 @@ export async function getServerSideProps(context) {
 export default function Home(props): JSX.Element {
     const router: NextRouter = useRouter()
     const queryKey: string = props?.dehydratedState?.queries[0]?.queryKey
-    const query = router?.query
+    const category = router?.query?.category
 
     const { data, isError } = useQuery(queryKey, () => fetchNews(queryKey), {
         staleTime: cacheTime,
@@ -77,13 +70,9 @@ export default function Home(props): JSX.Element {
     }
 
     return (
-        <>
-            <Title query={query} />
-            <NextNProgress color="#f44d30" showOnShallow={true} height={4} />
-            <Navbar />
+        <Fragment>
+            <Seo category={category} />
             <Results data={data} />
-            <Footer />
-            <ScrollToTop />
-        </>
+        </Fragment>
     )
 }

@@ -72,7 +72,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                         {individualData?.headlines}
                     </span>
 
-                    <p className="font-medium md:text-[0.85em] brightness-95 text-xs md:mt-4 mt-2 sm:line-clamp-4 line-clamp-3">
+                    <p className="font-medium md:text-[0.85em] brightness-95 text-xs md:mt-4 mt-2 line-clamp-4">
                         {individualData?.fullNews}
                     </p>
                 </div>

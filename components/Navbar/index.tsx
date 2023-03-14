@@ -17,13 +17,18 @@ const Index = memo(function Index() {
             />
             <div className="flex items-center justify-center mx-auto mt-4 mb-6 w-[70px] h-[70px] md:mt-8 md:w-[90px] md:h-[90px]">
                 <Image
-                    src="/logo.png"
+                    src="/logo.gif"
                     height={100}
                     width={100}
                     alt="logo"
                     className="object-contain"
                 />
             </div>
+            <img
+                src="https://readme-typing-svg.demolab.com?font=Poppins&duration=5010&pause=1000&color=C88E61&center=true&vCenter=true&lines=CyberPecker;Get+the+latest+scoop+on+cyberspace"
+                alt="banner"
+                className="object-contain sm:h-5 h-4 mt-[-20px]"
+            />
             <NavLinks />
         </nav>
     )
