@@ -17,11 +17,10 @@ const Index = ({
     individualData,
     setShowNewsModal,
 }: PropsData): JSX.Element => {
+    const [open, setOpen] = useState<boolean>(true)
     const [summary, setSummary] = useState<string | null>(null)
 
     const { fullNews } = individualData || {}
-
-    const onClose = () => setShowNewsModal(false)
 
     useQuery(String(individualData?.id), () => postSummary(fullNews), {
         cacheTime: 1000 * 60 * 15,
@@ -72,8 +71,12 @@ const Index = ({
     }
 
     const handleClose = () => {
-        cancel()
-        onClose()
+        setOpen(false)
+
+        setTimeout(() => {
+            cancel()
+            setShowNewsModal(false)
+        }, 150)
     }
 
     const word: string = summary && removeNonAlphanumeric(currentWord)
@@ -81,23 +84,15 @@ const Index = ({
     return (
         <>
             <div
-                className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] w-screen h-full p-5 z-[100]"
+                className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] bg-[url('/noise.png')] bg-[length:15%] w-screen h-full p-5 z-[10000] shadow drop-shadow"
                 onClick={handleClose}
             ></div>
 
             <div
-                className="flex fixed flex-col items-center justify-center z-[999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto md:px-2 px-[6px] md:pt-2 pt-[6px] bg-[#1e1e1e] rounded w-[95%] pb-1 shadow-lg"
-                style={{
-                    transform: 'scale(1)',
-                    WebkitTransform: 'scale(1)',
-                    msTransform: 'scale(1)',
-                    OTransform: 'scale(1)',
-                    animation: 'modalPopUp 0.3s',
-                    WebkitAnimation: 'modalPopUp 0.3s',
-                    MozAnimation: 'modalPopUp 0.3s',
-                    OAnimation: 'modalPopUp 0.3s',
-                    backgroundImage: "url('/noise.png')",
-                }}
+                id="newsModal"
+                className={`flex fixed flex-col items-center justify-center z-[99999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto md:px-2 px-[6px] md:pt-2 pt-[6px] bg-[#1e1e1e] rounded w-[95%] pb-1 shadow-lg bg-[url('/noise.png')] ${
+                    open ? 'modalPopUp' : 'modalPopDown'
+                }`}
             >
                 {word && speaking && !paused && (
                     <div className="absolute -top-10">

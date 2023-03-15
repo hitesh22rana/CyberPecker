@@ -40,7 +40,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             )}
             <div
                 ref={cardRef}
-                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 bg-[#1e1e1e] rounded shadow border-2 border-[#212121] ${
+                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 bg-[#1e1e1e] rounded shadow border-2 border-[#212121] drop-shadow ${
                     isVisible ? 'opacity-100' : 'opacity-0'
                 } transition duration-[250ms] ease-in`}
                 style={{
