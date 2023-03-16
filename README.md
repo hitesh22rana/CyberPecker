@@ -1,6 +1,6 @@
 <div align="center" >
   <a href="https://cyberpecker.vercel.app">
-    <img src="https://github.com/hitesh22rana/CyberPecker/blob/main/public/logo.png?raw=true" alt="CyberPecker logo" title="CyberPecker logo" width="100">
+    <img src="https://github.com/hitesh22rana/CyberPecker/blob/main/public/logo.gif?raw=true" alt="CyberPecker logo" title="CyberPecker logo" width="100">
     
   ![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&size=15&duration=5010&pause=1000&color=C88E61&center=true&vCenter=true&lines=CyberPecker;Get+the+latest+scoop+on+cyberspace)
 

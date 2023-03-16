@@ -8,12 +8,12 @@ export default function Index({ setEnter }) {
         function handleEnter() {
             setAnimation(true)
 
-            const glitch = new Audio('/glitch.wav')
+            const glitch = new Audio('/glitch.mp3')
             glitch.play()
 
             setTimeout(() => {
                 setEnter(true)
-            }, 500)
+            }, 400)
         },
         [setEnter]
     )

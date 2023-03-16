@@ -17,7 +17,6 @@ const Index = ({
     individualData,
     setShowNewsModal,
 }: PropsData): JSX.Element => {
-    const [open, setOpen] = useState<boolean>(true)
     const [summary, setSummary] = useState<string | null>(null)
 
     const { fullNews } = individualData || {}
@@ -71,12 +70,8 @@ const Index = ({
     }
 
     const handleClose = () => {
-        setOpen(false)
-
-        setTimeout(() => {
-            cancel()
-            setShowNewsModal(false)
-        }, 150)
+        cancel()
+        setShowNewsModal(false)
     }
 
     const word: string = summary && removeNonAlphanumeric(currentWord)
@@ -90,9 +85,7 @@ const Index = ({
 
             <div
                 id="newsModal"
-                className={`flex fixed flex-col items-center justify-center z-[99999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto md:px-2 px-[6px] md:pt-2 pt-[6px] bg-[#1e1e1e] rounded w-[95%] pb-1 shadow-lg bg-[url('/noise.png')] ${
-                    open ? 'modalPopUp' : 'modalPopDown'
-                }`}
+                className="flex fixed flex-col items-center justify-center z-[99999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto md:px-2 px-[6px] md:pt-2 pt-[6px] bg-[#1e1e1e] rounded w-[95%] pb-1 shadow-lg bg-[url('/noise.png')] modalPopUp"
             >
                 {word && speaking && !paused && (
                     <div className="absolute -top-10">

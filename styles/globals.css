@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
     body {
         @apply bg-[#171717] text-gray-300 font-mono;
     }
 }
-
 *,
 html {
     margin: 0;
@@ -17,15 +14,12 @@ html {
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
-
 *::-webkit-scrollbar {
     width: 15px;
 }
-
 *::-webkit-scrollbar-track {
     border-radius: 10px;
 }
-
 *::-webkit-scrollbar-thumb {
     height: 50px;
     border-radius: 10px;
@@ -33,16 +27,13 @@ html {
     background-clip: content-box;
     background-color: #888;
 }
-
 *::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
-
 body {
     background-image: url('/noise.png');
     background-size: 15%;
 }
-
 body,
 h1,
 h2,
@@ -58,19 +49,15 @@ ul {
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
 }
-
 ol,
 ul {
     list-style: none;
     text-decoration: none;
 }
-
 span,
 a {
     text-decoration: none;
 }
-
-/* Loading */
 .skeletonImg {
     display: block !important;
     position: absolute;
@@ -79,67 +66,55 @@ a {
     background-repeat: no-repeat;
     background-image: linear-gradient(90deg, #313131, #525252, #313131);
     transform: translateX(-100%);
-
     animation-name: skeletonLoading;
     -webkit-animation-name: skeletonLoading;
     -moz-animation-name: skeletonLoading;
     -o-animation-name: skeletonLoading;
-
     animation-direction: alternate;
     -webkit-animation-direction: alternate;
     -moz-animation-direction: alternate;
     -o-animation-direction: alternate;
-
     animation-duration: 1s;
     -webkit-animation-duration: 1s;
     -moz-animation-duration: 1s;
     -o-animation-duration: 1s;
-
     animation-timing-function: ease-in-out;
     -webkit-animation-timing-function: ease-in-out;
     -moz-animation-timing-function: ease-in-out;
     -o-animation-timing-function: ease-in-out;
-
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
     -moz-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
 }
-
 @keyframes skeletonLoading {
     100% {
         transform: translateX(100%);
     }
 }
-
 @-webkit-keyframes skeletonLoading {
     100% {
         transform: translateX(100%);
     }
 }
-
 @-moz-keyframes skeletonLoading {
     100% {
         transform: translateX(100%);
     }
 }
-
 @-o-keyframes skeletonLoading {
     100% {
         transform: translateX(100%);
     }
 }
-
 .loader {
     animation: rotate 1s infinite;
     -webkit-animation: rotate 1s infinite;
     -moz-animation: rotate 1s infinite;
     -o-animation: rotate 1s infinite;
-
     height: 50px;
     width: 50px;
 }
-
 .loader:before,
 .loader:after {
     border-radius: 50%;
@@ -148,29 +123,23 @@ a {
     height: 20px;
     width: 20px;
 }
-
 .loader:before {
     animation: ball1 1s infinite;
     -webkit-animation: ball1 1s infinite;
     -moz-animation: ball1 1s infinite;
     -o-animation: ball1 1s infinite;
-
     background-color: #fff;
     box-shadow: 30px 0 0 #ff3d00;
     margin-bottom: 10px;
 }
-
 .loader:after {
     animation: ball2 1s infinite;
     -webkit-animation: ball2 1s infinite;
     -moz-animation: ball2 1s infinite;
     -o-animation: ball2 1s infinite;
-
     background-color: #ff3d00;
     box-shadow: 30px 0 0 #fff;
 }
-
-/* Rotate Keyframes */
 @keyframes rotate {
     0% {
         transform: rotate(0deg) scale(0.8);
@@ -182,7 +151,6 @@ a {
         transform: rotate(720deg) scale(0.8);
     }
 }
-
 @-webkit-keyframes rotate {
     0% {
         transform: rotate(0deg) scale(0.8);
@@ -194,7 +162,6 @@ a {
         transform: rotate(720deg) scale(0.8);
     }
 }
-
 @-moz-keyframes rotate {
     0% {
         transform: rotate(0deg) scale(0.8);
@@ -206,7 +173,6 @@ a {
         transform: rotate(720deg) scale(0.8);
     }
 }
-
 @-o-keyframes rotate {
     0% {
         transform: rotate(0deg) scale(0.8);
@@ -218,9 +184,6 @@ a {
         transform: rotate(720deg) scale(0.8);
     }
 }
-
-/* Ball1 keyframes */
-
 @keyframes ball1 {
     0% {
         box-shadow: 30px 0 0 #ff3d00;
@@ -235,7 +198,6 @@ a {
         margin-bottom: 10px;
     }
 }
-
 @-webkit-keyframes ball1 {
     0% {
         box-shadow: 30px 0 0 #ff3d00;
@@ -250,7 +212,6 @@ a {
         margin-bottom: 10px;
     }
 }
-
 @-moz-keyframes ball1 {
     0% {
         box-shadow: 30px 0 0 #ff3d00;
@@ -265,7 +226,6 @@ a {
         margin-bottom: 10px;
     }
 }
-
 @-o-keyframes ball1 {
     0% {
         box-shadow: 30px 0 0 #ff3d00;
@@ -280,9 +240,6 @@ a {
         margin-bottom: 10px;
     }
 }
-
-/* Ball2 keyframes */
-
 @keyframes ball2 {
     0% {
         box-shadow: 30px 0 0 #fff;
@@ -297,7 +254,6 @@ a {
         margin-top: 0;
     }
 }
-
 @-webkit-keyframes ball2 {
     0% {
         box-shadow: 30px 0 0 #fff;
@@ -312,7 +268,6 @@ a {
         margin-top: 0;
     }
 }
-
 @-moz-keyframes ball2 {
     0% {
         box-shadow: 30px 0 0 #fff;
@@ -327,7 +282,6 @@ a {
         margin-top: 0;
     }
 }
-
 @-o-keyframes ball2 {
     0% {
         box-shadow: 30px 0 0 #fff;
@@ -342,9 +296,6 @@ a {
         margin-top: 0;
     }
 }
-
-/* Modal PopUp animations */
-
 @keyframes modalPopUp {
     0% {
         transform: scale(0);
@@ -361,53 +312,29 @@ a {
         -ms-transform: scale(1);
     }
 }
-
 .modalPopUp {
     animation: modalPopUp 0.2s;
 }
-
-/* Modal Popdown animation */
-
-@keyframes modalPopDown {
-    0% {
-        transform: scale(0);
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-        -o-transform: scale(0);
-        -ms-transform: scale(0);
-    }
-}
-
-.modalPopDown {
-    animation: modalPopDown 0.2s;
-}
-
-/* Text Reveal animations */
-
 @keyframes textReveal {
     0% {
         opacity: 0;
     }
 }
-
 @-webkit-keyframes textReveal {
     0% {
         opacity: 0;
     }
 }
-
 @-moz-keyframes textReveal {
     0% {
         opacity: 0;
     }
 }
-
 @-o-keyframes textReveal {
     0% {
         opacity: 0;
     }
 }
-
 @keyframes ping {
     75%,
     100% {
@@ -415,26 +342,21 @@ a {
         opacity: 0;
     }
 }
-
 .ping-animation {
     animation: ping 0.8s cubic-bezier(0, 0, 0.2, 1);
 }
-
 @keyframes text-ping-and-pulse {
     50% {
         opacity: 0.6;
         transform: scale(1.06);
     }
 }
-
 .text-fade-animation {
     animation: text-ping-and-pulse 0.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
 .animate-fadeIn {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.4s ease-in-out;
 }
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -445,11 +367,9 @@ a {
         transform: scale(1);
     }
 }
-
 .animate-fadeOut {
-    animation: fadeOut 0.5s ease-in-out;
+    animation: fadeOut 0.4s ease-in-out;
 }
-
 @keyframes fadeOut {
     0% {
         opacity: 1;
