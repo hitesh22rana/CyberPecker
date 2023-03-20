@@ -2,10 +2,10 @@ import type { AppProps } from 'next/app'
 import { Analytics } from '@vercel/analytics/react'
 import { useState, Fragment } from 'react'
 import dynamic from 'next/dynamic'
-
 import '../styles/globals.css'
 import useInitialLoading from '../hooks/useInitialLoading'
 
+const ErrorPage = dynamic(() => import('./404'))
 const NextNProgress = dynamic(() => import('nextjs-progressbar'))
 const Navbar = dynamic(() => import('../components/Navbar'))
 const Footer = dynamic(() => import('../components/Footer'))
@@ -27,6 +27,11 @@ const App = ({ Component, pageProps }: AppProps) => {
                 },
             })
     )
+    const isError = pageProps['results'] === null
+
+    if (isError) {
+        return <ErrorPage statusCode={404} />
+    }
 
     return isLoading ? (
         <div className="flex justify-center items-center w-screen h-screen">

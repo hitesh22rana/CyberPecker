@@ -7,7 +7,7 @@ import LRU from 'lru-cache'
 
 const Results = dynamic(() => import('../components/Results'))
 const Seo = dynamic(() => import('../components/Seo'))
-const ErrorPage = dynamic(() => import('next/error'))
+const ErrorPage = dynamic(() => import('./404'))
 
 import { fetchNews, getDataUrl } from '../utils/requests'
 

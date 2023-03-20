@@ -21,3 +21,8 @@ export interface UseTextToSpeechReturn {
     paused: boolean
     currentWord: string
 }
+
+export interface Quote {
+    quote: string
+    author: string
+}
