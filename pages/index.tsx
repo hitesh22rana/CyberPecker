@@ -7,7 +7,6 @@ import LRU from 'lru-cache'
 
 const Results = dynamic(() => import('../components/Results'))
 const Seo = dynamic(() => import('../components/Seo'))
-const ErrorPage = dynamic(() => import('./404'))
 
 import { fetchNews, getDataUrl } from '../utils/requests'
 
@@ -61,13 +60,9 @@ export default function Home(props): JSX.Element {
     const queryKey: string = props?.dehydratedState?.queries[0]?.queryKey
     const category = router?.query?.category
 
-    const { data, isError } = useQuery(queryKey, () => fetchNews(queryKey), {
+    const { data } = useQuery(queryKey, () => fetchNews(queryKey), {
         staleTime: cacheTime,
     })
-
-    if (!data || isError) {
-        return <ErrorPage statusCode={404} />
-    }
 
     return (
         <Fragment>

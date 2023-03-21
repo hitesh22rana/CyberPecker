@@ -34,9 +34,9 @@ export default function Index({ setEnter }) {
         document.addEventListener('keydown', handleEnterKeyPress, true)
 
         return () => {
-            document.removeEventListener('keydown', handleEnterKeyPress)
+            document.removeEventListener('keydown', handleEnterKeyPress, true)
         }
-    }, [])
+    }, [handleEnterKeyPress])
 
     useEffect(() => {
         function setNewQuote() {
@@ -75,7 +75,10 @@ export default function Index({ setEnter }) {
                 </div>
             )}
 
-            <div className="flex flex-col items-center gap-2 animate-pulse">
+            <div
+                className="flex flex-col items-center gap-2 animate-pulse"
+                onClick={handleEnter}
+            >
                 <Image
                     src="/logo.gif"
                     height={200}
@@ -83,10 +86,7 @@ export default function Index({ setEnter }) {
                     alt="logo"
                     className="object-contain"
                 />
-                <button
-                    className="text-lg border-[#f44d30] text-[#f44d30] hover:brightness-75"
-                    onClick={handleEnter}
-                >
+                <button className="text-lg border-[#f44d30] text-[#f44d30] hover:brightness-75">
                     Enter
                 </button>
             </div>

@@ -440,16 +440,16 @@ a {
 }
 .glitch-text {
     position: relative;
-    color: #888;
-}
-.glitch-text::before {
-    position: absolute;
-    content: attr(data-text);
-    width: 100%;
+    color: #555;
     text-shadow: 1px 0 #fbe601, 2px 0 #f44d30;
     animation: glitch-text-effect 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    left: -1px;
 }
+
+.glitch-text > cite {
+    animation: none;
+    text-shadow: none;
+}
+
 @keyframes glitch-text-effect {
     0%,
     100% {

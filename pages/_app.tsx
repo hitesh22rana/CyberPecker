@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic'
 import '../styles/globals.css'
 import useInitialLoading from '../hooks/useInitialLoading'
 
+import { NextRouter, useRouter } from 'next/router'
+
 const ErrorPage = dynamic(() => import('./404'))
 const NextNProgress = dynamic(() => import('nextjs-progressbar'))
 const Navbar = dynamic(() => import('../components/Navbar'))
@@ -15,6 +17,7 @@ const LandingPage = dynamic(() => import('../components/LandingPage'))
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
 const App = ({ Component, pageProps }: AppProps) => {
+    const router: NextRouter = useRouter()
     const isLoading = useInitialLoading()
     const [enter, setEnter] = useState<boolean>(false)
     const [queryClient] = useState(
@@ -27,7 +30,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                 },
             })
     )
-    const isError = pageProps['results'] === null
+    const isError = pageProps['results'] === null || router.pathname === '/404'
 
     if (isError) {
         return <ErrorPage statusCode={404} />
