@@ -7,14 +7,20 @@ import useInitialLoading from '../hooks/useInitialLoading'
 
 import { NextRouter, useRouter } from 'next/router'
 
-const ErrorPage = dynamic(() => import('./404'))
+const ClientError = dynamic(() => import('./404'))
+const ServerError = dynamic(() => import('./500'))
 const NextNProgress = dynamic(() => import('nextjs-progressbar'))
 const Navbar = dynamic(() => import('../components/Navbar'))
 const Footer = dynamic(() => import('../components/Footer'))
 const ScrollToTop = dynamic(() => import('../components/ScrollToTop'))
 const LandingPage = dynamic(() => import('../components/LandingPage'))
 
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
+import {
+    dehydrate,
+    Hydrate,
+    QueryClient,
+    QueryClientProvider,
+} from 'react-query'
 
 const App = ({ Component, pageProps }: AppProps) => {
     const router: NextRouter = useRouter()
@@ -30,10 +36,12 @@ const App = ({ Component, pageProps }: AppProps) => {
                 },
             })
     )
-    const isError = pageProps['results'] === null || router.pathname === '/404'
+    const dehydratedState = dehydrate(queryClient)
 
-    if (isError) {
-        return <ErrorPage statusCode={404} />
+    if (router.pathname === '/404' || pageProps['status'] === 404) {
+        return <ClientError />
+    } else if (router.pathname === '/500' || pageProps['status'] === 500) {
+        return <ServerError />
     }
 
     return isLoading ? (
@@ -42,7 +50,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </div>
     ) : (
         <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps['dehydratedState']}>
+            <Hydrate state={dehydratedState}>
                 {!enter ? (
                     <LandingPage setEnter={setEnter} />
                 ) : (

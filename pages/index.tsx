@@ -25,7 +25,8 @@ export async function getServerSideProps(context) {
     if (!dataUrl) {
         return {
             props: {
-                results: null,
+                dehydratedState: null,
+                status: 404,
             },
         }
     }
@@ -36,6 +37,7 @@ export async function getServerSideProps(context) {
         return {
             props: {
                 dehydratedState: cached,
+                status: 200,
             },
         }
     }
@@ -46,11 +48,15 @@ export async function getServerSideProps(context) {
         cacheTime,
     })
 
+    const status =
+        queryClient?.getQueryState(dataUrl)?.error?.response?.status || 200
+
     ssrCache.set(dataUrl, dehydrate(queryClient))
 
     return {
         props: {
             dehydratedState: dehydrate(queryClient),
+            status: status,
         },
     }
 }

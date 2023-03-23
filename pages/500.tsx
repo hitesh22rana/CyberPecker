@@ -4,13 +4,13 @@ export default function Index() {
     return (
         <div className="fixed top-0 flex flex-col h-screen w-screen items-center justify-center">
             <h1
-                title="404"
+                title="500"
                 className="text-[#f4e9e1] glitch md:text-9xl text-7xl drop-shadow"
                 style={{
                     textShadow: '2px 2px #f44d30',
                 }}
             >
-                404
+                500
             </h1>
             <h2
                 className="text-[#f4e9e1] md:text-xl text-base"
@@ -18,11 +18,12 @@ export default function Index() {
                     textShadow: '1px 1px #f44d30',
                 }}
             >
-                Page Not Found
+                Internal Server Error
             </h2>
             <span className="text-[#f4e9e1] md:text-sm text-xs my-4 block md:max-w-lg max-w-xs text-center px-2">
-                The page you are looking for might have been removed had its
-                name changed or is temporarily unavailable.
+                The server encountered an internal error or misconfiguration and
+                was unable to complete your request. Please be patient or try
+                again later.
             </span>
             <Link href="/">
                 <a

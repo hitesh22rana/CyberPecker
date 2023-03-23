@@ -33,6 +33,7 @@ html {
 body {
     background-image: url('/noise.png');
     background-size: 15%;
+    overflow-x: hidden;
 }
 body,
 h1,
@@ -57,55 +58,6 @@ ul {
 span,
 a {
     text-decoration: none;
-}
-.skeletonImg {
-    display: block !important;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(90deg, #313131, #525252, #313131);
-    transform: translateX(-100%);
-    animation-name: skeletonLoading;
-    -webkit-animation-name: skeletonLoading;
-    -moz-animation-name: skeletonLoading;
-    -o-animation-name: skeletonLoading;
-    animation-direction: alternate;
-    -webkit-animation-direction: alternate;
-    -moz-animation-direction: alternate;
-    -o-animation-direction: alternate;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-    -moz-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-timing-function: ease-in-out;
-    -moz-animation-timing-function: ease-in-out;
-    -o-animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-}
-@keyframes skeletonLoading {
-    100% {
-        transform: translateX(100%);
-    }
-}
-@-webkit-keyframes skeletonLoading {
-    100% {
-        transform: translateX(100%);
-    }
-}
-@-moz-keyframes skeletonLoading {
-    100% {
-        transform: translateX(100%);
-    }
-}
-@-o-keyframes skeletonLoading {
-    100% {
-        transform: translateX(100%);
-    }
 }
 .loader {
     animation: rotate 1s infinite;
@@ -461,4 +413,19 @@ a {
         transform: none;
         animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
+}
+
+@keyframes bounce-button {
+    0%,
+    100% {
+        transform: translateY(-15%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: none;
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+.bounce-button {
+    animation: bounce-button 1s infinite;
 }

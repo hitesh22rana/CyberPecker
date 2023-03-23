@@ -84,9 +84,12 @@ export default function Index({ setEnter }) {
                     height={200}
                     width={200}
                     alt="logo"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="/logo.gif"
                     className="object-contain"
                 />
-                <button className="text-lg border-[#f44d30] text-[#f44d30] hover:brightness-75">
+                <button className="my-4 md:text-base text-xs cursor-pointer transition-all rounded px-6 py-2 border-2 shadow-[2px_2px_#f44d30] hover:shadow-[4px_4px_5px_#f44d30] hover:brightness-90 bounce-button">
                     Enter
                 </button>
             </div>

@@ -21,6 +21,9 @@ const Index = memo(function Index() {
                     height={100}
                     width={100}
                     alt="logo"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="/logo.gif"
                     className="object-contain"
                 />
             </div>
