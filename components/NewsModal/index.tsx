@@ -79,7 +79,7 @@ const Index = ({
     return (
         <>
             <div
-                className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] bg-[url('/noise.png')] bg-[length:15%] w-screen h-full p-5 z-[10000] shadow drop-shadow"
+                className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] bg-[url('/noise.png')] bg-[length:15%] w-screen h-full p-5 z-[10000] shadow drop-shadow-2xl"
                 onClick={handleClose}
             ></div>
 

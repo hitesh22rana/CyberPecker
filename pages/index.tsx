@@ -70,6 +70,14 @@ export default function Home(props): JSX.Element {
         staleTime: cacheTime,
     })
 
+    if (!data) {
+        return (
+            <div className="flex justify-center items-center w-full h-screen">
+                <span className="loader scale-50" />
+            </div>
+        )
+    }
+
     return (
         <Fragment>
             <Seo category={category} />
