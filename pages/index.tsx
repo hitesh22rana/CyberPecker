@@ -72,7 +72,7 @@ export default function Home(props): JSX.Element {
 
     if (!data) {
         return (
-            <div className="flex justify-center items-center w-full h-screen">
+            <div className="flex justify-center items-center w-full md:h-[calc(100vh-320px)] h-[calc(100vh-360px)]">
                 <span className="loader scale-50" />
             </div>
         )

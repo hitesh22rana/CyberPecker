@@ -36,13 +36,14 @@ const App = ({ Component, pageProps }: AppProps) => {
                 },
             })
     )
-    const dehydratedState = dehydrate(queryClient)
 
     if (router.pathname === '/404' || pageProps['status'] === 404) {
         return <ClientError />
     } else if (router.pathname === '/500' || pageProps['status'] === 500) {
         return <ServerError />
     }
+
+    const dehydratedState = dehydrate(queryClient)
 
     return isLoading ? (
         <div className="flex justify-center items-center w-screen h-screen">
