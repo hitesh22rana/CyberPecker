@@ -79,13 +79,13 @@ const Index = ({
     return (
         <>
             <div
-                className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] bg-[url('/noise.png')] bg-[length:15%] w-screen h-full p-5 z-[10000] shadow drop-shadow-2xl"
+                className="fixed top-0 left-0 bg-[rgba(0,0,0,0.8)] bg-[url('/noise.png')] bg-[length:15%] w-screen h-full z-[10000]"
                 onClick={handleClose}
             ></div>
 
             <div
                 id="newsModal"
-                className="flex fixed flex-col items-center justify-center z-[99999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto md:px-2 px-[6px] md:pt-2 pt-[6px] bg-[#1e1e1e] rounded md:w-[98%] w-[95%] pb-1 shadow-lg bg-[url('/noise.png')] modalPopUp"
+                className="flex fixed flex-col items-center justify-center z-[99999] min-h-max min-w-min max-w-lg top-[50%] right-0 bottom-[50%] left-0 m-auto md:px-2 px-[6px] md:pt-2 pt-[6px] bg-[#1e1e1e] rounded md:w-[98%] w-[95%] pb-1 shadow-lg bg-[url('/noise.png')] modalPopUp drop-shadow-2xl"
             >
                 {word && speaking && !paused && (
                     <div className="absolute -top-10">
@@ -110,8 +110,8 @@ const Index = ({
                     link={individualData?.newsURL}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
-                    className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform hover:scale-[1.1] hover:brightness-50"
+                    blurDataURL="/noise.png"
+                    className="transition duration-200 ease-in hover:brightness-50"
                 />
                 <div
                     className="flex flex-col mt-1 justify-start items-start w-full md:p-1 p-0 pb-1"

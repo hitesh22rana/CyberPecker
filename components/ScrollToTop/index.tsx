@@ -16,8 +16,8 @@ const Index = memo(function Index() {
         >
             <div className="flex items-center justify-center w-[90%] h-[90%] translate-x-[5%] translate-y-[5%] absolute rounded-[50%] bg-white">
                 <Image
-                    width="100%"
-                    height="100%"
+                    width={100}
+                    height={100}
                     src="/arrow.png"
                     alt="arrow"
                     loading="lazy"

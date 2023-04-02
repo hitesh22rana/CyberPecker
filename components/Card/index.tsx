@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, Fragment } from 'react'
 import { NewsData } from '../../utils/interfaces'
 import ImageFallback from '../ImageFallback'
 import NewsModal from '../NewsModal'
@@ -31,7 +31,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
     }, [observer, cardRef])
 
     return (
-        <>
+        <Fragment>
             {showNewsModal && (
                 <NewsModal
                     individualData={individualData}
@@ -40,12 +40,9 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             )}
             <div
                 ref={cardRef}
-                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 bg-[#1e1e1e] rounded shadow border-2 border-[#212121] drop-shadow ${
+                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 bg-[#1e1e1e] rounded shadow border-2 border-[#212121] drop-shadow bg-[url('/noise.png')] ${
                     isVisible ? 'opacity-100' : 'opacity-0'
                 } transition duration-[250ms] ease-in`}
-                style={{
-                    backgroundImage: "url('/noise.png')",
-                }}
                 onClick={() => setShowNewsModal(true)}
             >
                 <ImageFallback
@@ -53,7 +50,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     fallbacksrc="/noImage.png"
                     width={1920}
                     height={1080}
-                    author={individualData.author}
+                    author={individualData?.author}
                     date={individualData?.newsDate}
                     suppressHydrationWarning={true}
                     handleSpeak={null}
@@ -63,8 +60,8 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     link={null}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
-                    className="border-[1px] hover:border-2 border-stone-700 transition duration-200 ease-in transform group-hover:scale-[1.1] group-hover:brightness-50"
+                    blurDataURL="/noise.png"
+                    className="transition duration-200 ease-in transform group-hover:brightness-50"
                 />
 
                 <div className="flex flex-col mt-1 p-1">
@@ -77,6 +74,6 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     </p>
                 </div>
             </div>
-        </>
+        </Fragment>
     )
 }

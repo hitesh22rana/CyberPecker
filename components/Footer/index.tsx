@@ -12,13 +12,13 @@ const Index = memo(function Index() {
                 <div className="flex flex-col gap-2 mx-4">
                     <Image
                         src="/logo.gif"
-                        height={50}
-                        width={50}
+                        height={60}
+                        width={60}
                         alt="logo"
                         loading="lazy"
                         placeholder="blur"
                         blurDataURL="/logo.gif"
-                        className="object-contain cursor-pointer"
+                        className="object-contain cursor-pointer mx-auto"
                     />
                     <div className="flex flex-col gap-1 items-center">
                         <span className="font-normal sm:text-xs text-[0.6rem]">

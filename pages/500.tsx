@@ -25,15 +25,14 @@ export default function Index() {
                 was unable to complete your request. Please be patient or try
                 again later.
             </span>
-            <Link href="/">
-                <a
-                    className="md:text-base text-xs cursor-pointer transition-all rounded px-4 py-2 border-2 shadow-[2px_2px_#f44d30] hover:shadow-[4px_4px_5px_#f44d30] hover:brightness-90 bounce-button"
-                    style={{
-                        textShadow: '1px 1px #f44d30',
-                    }}
-                >
-                    Go back
-                </a>
+            <Link
+                href="/"
+                className="md:text-base text-xs cursor-pointer transition-all rounded px-4 py-2 border-2 shadow-[2px_2px_#f44d30] hover:shadow-[4px_4px_5px_#f44d30] hover:brightness-90 bounce-button"
+                style={{
+                    textShadow: '1px 1px #f44d30',
+                }}
+            >
+                Go back
             </Link>
         </div>
     )

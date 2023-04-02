@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import { FiExternalLink } from 'react-icons/fi'
 
@@ -16,12 +16,12 @@ export default function Index({
     handleSpeak = null,
     ...rest
 }): JSX.Element {
-    const [imgSrc, setImgSrc] = useState(src)
+    const [imgSrc, setImgSrc] = useState<string>(src)
 
     return (
         <div className="relative group">
             {canSpeak && (
-                <>
+                <Fragment>
                     <a
                         href={link}
                         target="_blank"
@@ -46,7 +46,7 @@ export default function Index({
                             </div>
                         )}
                     </button>
-                </>
+                </Fragment>
             )}
 
             <Image
@@ -59,12 +59,17 @@ export default function Index({
             />
 
             <div className="transition-all duration-200 group-hover:flex absolute hidden flex-row justify-between w-full bottom-0 right-0 left-0 p-2 text-white gap-4">
-                <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis shadow">
-                    {author !== 'N/A' && author}
-                </span>
-                <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
-                    {date !== 'N/A' && date}
-                </span>
+                {author !== 'N/A' && (
+                    <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis shadow">
+                        {author}
+                    </span>
+                )}
+
+                {date !== 'N/A' && (
+                    <span className="font-semibold text-xs whitespace-nowrap overflow-hidden text-ellipsis">
+                        {date}
+                    </span>
+                )}
             </div>
         </div>
     )
