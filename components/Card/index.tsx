@@ -40,16 +40,18 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             )}
             <div
                 ref={cardRef}
-                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 bg-[#1e1e1e] rounded shadow border-2 border-[#212121] drop-shadow bg-[url('/noise.png')] ${
-                    isVisible ? 'opacity-100' : 'opacity-0'
+                className={`group p-1 cursor-pointer hover:z-50 md:my-4 my-6 mx-2 bg-[#1e1e1e] rounded shadow-xl border-2 border-[#212121] drop-shadow bg-[url('/noise.png')] ${
+                    isVisible
+                        ? 'opacity-100'
+                        : 'opacity-0 max-w-full max-h-full'
                 } transition duration-[250ms] ease-in`}
                 onClick={() => setShowNewsModal(true)}
             >
                 <ImageFallback
                     src={individualData?.newsImgURL}
                     fallbacksrc="/noImage.png"
-                    width={1920}
-                    height={1080}
+                    width="1920"
+                    height="1080"
                     author={individualData?.author}
                     date={individualData?.newsDate}
                     suppressHydrationWarning={true}
@@ -60,8 +62,8 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     link={null}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL="/noise.png"
-                    className="transition duration-200 ease-in transform group-hover:brightness-50"
+                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
+                    className="border-[1px] border-stone-700 transition duration-200 ease-in transform group-hover:brightness-50 object-contain"
                 />
 
                 <div className="flex flex-col mt-1 p-1">

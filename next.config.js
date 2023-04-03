@@ -5,6 +5,7 @@ const nextConfig = {
         ignoreBuildErrors: true,
     },
     images: {
+        formats: ['image/avif', 'image/webp'],
         domains: [
             'https://thehackernews.com',
             'https://etimg.etb2bimg.com',

@@ -28,9 +28,9 @@ const Index = memo(function Index() {
                 />
             </div>
             <img
-                src="https://readme-typing-svg.demolab.com?font=space+mono&duration=5010&pause=1000&color=C88E61&center=true&vCenter=true&lines=CyberPecker;Get+the+latest+scoop+on+cyberspace"
+                src="https://readme-typing-svg.demolab.com?font=mono&duration=5010&pause=1000&color=C88E61&center=true&vCenter=true&lines=CyberPecker;Get+the+latest+scoop+on+cyberspace"
                 alt="banner"
-                className="object-contain sm:h-7 h-6 sm:mt-[-20px] mt-[-25px]"
+                className="object-contain sm:h-6 h-[18px] sm:mt-[-20px] mt-[-25px]"
             />
             <NavLinks />
         </nav>

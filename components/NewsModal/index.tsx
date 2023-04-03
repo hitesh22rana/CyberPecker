@@ -110,7 +110,7 @@ const Index = ({
                     link={individualData?.newsURL}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL="/noise.png"
+                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
                     className="transition duration-200 ease-in hover:brightness-50"
                 />
                 <div

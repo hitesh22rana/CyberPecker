@@ -56,6 +56,7 @@ export default function Index({
                     setImgSrc(fallbacksrc)
                 }}
                 alt="news-img"
+                className="aspect-[1.57]"
             />
 
             <div className="transition-all duration-200 group-hover:flex absolute hidden flex-row justify-between w-full bottom-0 right-0 left-0 p-2 text-white gap-4">
