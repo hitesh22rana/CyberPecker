@@ -63,7 +63,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
-                    className="border-[1px] border-stone-700 transition duration-200 ease-in transform group-hover:brightness-50 object-contain"
+                    className="border-[1px] border-stone-700 transition duration-200 ease-in transform group-hover:brightness-50 aspect-[1.57] group-hover:backdrop-brightness-50"
                 />
 
                 <div className="flex flex-col mt-1 p-1">
