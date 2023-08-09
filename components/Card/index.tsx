@@ -35,6 +35,7 @@ export default function Index({ individualData }: PropsData): JSX.Element {
             {showNewsModal && (
                 <NewsModal
                     individualData={individualData}
+                    showNewsModal={showNewsModal}
                     setShowNewsModal={setShowNewsModal}
                 />
             )}

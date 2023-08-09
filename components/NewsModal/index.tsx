@@ -1,4 +1,4 @@
-import { useState, SetStateAction, Dispatch, useRef } from 'react'
+import { useState, SetStateAction, Dispatch, useRef, useEffect } from 'react'
 import { useQuery } from 'react-query'
 
 import ImageFallback from '../ImageFallback'
@@ -10,13 +10,27 @@ import { removeNonAlphanumeric, textFilter } from '../../utils/helperFunctions'
 
 interface PropsData {
     individualData: NewsData
+    showNewsModal: boolean
     setShowNewsModal: Dispatch<SetStateAction<boolean>>
 }
 
 const Index = ({
     individualData,
+    showNewsModal,
     setShowNewsModal,
 }: PropsData): JSX.Element => {
+    useEffect(() => {
+        if (showNewsModal) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'auto'
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto'
+        }
+    }, [showNewsModal])
+
     const [summary, setSummary] = useState<string | null>(null)
 
     const { fullNews } = individualData || {}
