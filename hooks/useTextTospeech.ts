@@ -32,7 +32,7 @@ const useTextToSpeech = (): UseTextToSpeechReturn => {
             u.voice = voice
         }
 
-        u.rate = 1.04
+        u.rate = 1
         u.pitch = 1.1
 
         u.onstart = () => {

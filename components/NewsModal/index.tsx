@@ -33,16 +33,16 @@ const Index = ({
 
     const [summary, setSummary] = useState<string | null>(null)
 
-    const { fullNews } = individualData || {}
+    const { news } = individualData || {}
 
-    useQuery(String(individualData?.id), () => postSummary(fullNews), {
+    useQuery(String(individualData?.id), () => postSummary(news), {
         cacheTime: 1000 * 60 * 15,
         onSuccess: ({ data }) => {
             const summarizedData: string = textFilter(data?.summary)
             setSummary(summarizedData)
         },
         onError: () => {
-            setSummary(fullNews)
+            setSummary(news)
         },
     })
 
@@ -110,21 +110,20 @@ const Index = ({
                 )}
 
                 <ImageFallback
-                    src={individualData?.newsImgURL}
+                    src={individualData?.image}
                     width={1920}
                     height={1080}
                     quality={100}
-                    author={individualData?.author}
-                    date={individualData?.newsDate}
                     suppressHydrationWarning={true}
                     handleSpeak={handleSpeak}
                     isSpeaking={speaking}
                     canSpeak={summary ? true : false}
                     isPaused={paused}
-                    link={individualData?.newsURL}
+                    source={individualData?.source}
+                    link={individualData?.link}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
+                    blurDataURL={`/_next/image?url=${individualData?.image}&w=16&q=1`}
                     className="border-[1px] border-stone-700 transition duration-200 ease-in transform group-hover:brightness-50 aspect-[1.57] group-hover:backdrop-brightness-50"
                 />
                 <div
@@ -134,7 +133,7 @@ const Index = ({
                     }}
                 >
                     <span className="text-left font-semibold whitespace-normal md:text-base md:tracking-tighter md:leading-[18px] tracking-tighter text-sm w-full">
-                        {individualData?.headlines}
+                        {individualData?.headline}
                     </span>
 
                     <p className="text-left font-medium whitespace-normal md:text-[0.8em] md:leading-4 md:tracking-tighter tracking-tight text-[0.68em] leading-[14px] md:mt-3 mt-2 w-full brightness-95">

@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect, useMemo, Fragment } from 'react'
+import dynamic from 'next/dynamic'
+
 import { NewsData } from '../../utils/interfaces'
 import ImageFallback from '../ImageFallback'
-import NewsModal from '../NewsModal'
+const NewsModal = dynamic(() => import('../NewsModal'))
 
 interface PropsData {
     individualData: NewsData
@@ -49,31 +51,30 @@ export default function Index({ individualData }: PropsData): JSX.Element {
                 onClick={() => setShowNewsModal(true)}
             >
                 <ImageFallback
-                    src={individualData?.newsImgURL}
+                    src={individualData?.image}
                     fallbacksrc="/noImage.png"
                     width="1920"
                     height="1080"
-                    author={individualData?.author}
-                    date={individualData?.newsDate}
                     suppressHydrationWarning={true}
                     handleSpeak={null}
                     isSpeaking={null}
                     canSpeak={false}
                     isPaused={true}
+                    source={individualData?.source}
                     link={null}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL={`/_next/image?url=${individualData?.newsImgURL}&w=16&q=1`}
+                    blurDataURL={`/_next/image?url=${individualData?.image}&w=16&q=1`}
                     className="border-[1px] border-stone-700 transition duration-200 ease-in transform group-hover:brightness-50 aspect-[1.57] group-hover:backdrop-brightness-50"
                 />
 
                 <div className="flex flex-col mt-1 p-1">
                     <span className="font-semibold line-clamp-1 md:text-base text-sm">
-                        {individualData?.headlines}
+                        {individualData?.headline}
                     </span>
 
                     <p className="font-medium md:text-[0.85em] brightness-95 text-xs md:mt-4 mt-2 line-clamp-4">
-                        {individualData?.fullNews}
+                        {individualData?.news}
                     </p>
                 </div>
             </div>

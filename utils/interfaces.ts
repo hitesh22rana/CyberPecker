@@ -1,11 +1,10 @@
 export interface NewsData {
-    id: number
-    headlines: string
-    author: string
-    fullNews: string
-    newsURL: string
-    newsImgURL: string | null
-    newsDate: string
+    id: string
+    source: string
+    headline: string
+    news: string
+    link: string
+    image: string
 }
 
 export interface NewsDataArray {

@@ -37,25 +37,9 @@ export const dataUrls = {
         title: 'cloud',
         url: `${API_URL}cloud`,
     },
-    fetchTech: {
-        title: 'tech',
-        url: `${API_URL}tech`,
-    },
-    fetchIot: {
-        title: 'iot',
-        url: `${API_URL}iot`,
-    },
     fetchBigData: {
         title: 'bigData',
         url: `${API_URL}bigData`,
-    },
-    fetchBusiness: {
-        title: 'business',
-        url: `${API_URL}business`,
-    },
-    fetchMobility: {
-        title: 'mobility',
-        url: `${API_URL}mobility`,
     },
     fetchResearch: {
         title: 'research',
