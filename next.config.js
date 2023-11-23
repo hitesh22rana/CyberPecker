@@ -11,7 +11,7 @@ const nextConfig = {
             'https://etimg.etb2bimg.com',
             'etimg.etb2bimg.com',
             'thehackernews.com',
-            'blogger.googleusercontent.com'
+            'blogger.googleusercontent.com',
         ],
         minimumCacheTTL: 60,
     },
